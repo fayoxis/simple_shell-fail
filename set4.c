@@ -33,7 +33,7 @@ char *_getenv(inform_t *inform, const char *name)
 
     while (node != NULL)
     {
-        if (starts_with(node->str, name))
+        if (_it_starts_with(node->str, name))
         {
             value = strchr(node->str, '=');
             if (value != NULL)
@@ -99,7 +99,7 @@ int populateEnvironmentList(inform_t *inform)
 
     while (environ[i])
     {
-        addNodeEnd(&node, environ[i], 0);
+        add_newnode(&node, environ[i], 0);
         i++;
     }
     inform->env = node;
