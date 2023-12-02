@@ -105,7 +105,7 @@ list_t *find_node_starts_with(list_t *head, char *prefix, char c)
  *
  * Return: Index of the node or -1
  */
-ssize_t get_node_index(list_t *head, list_t *node)
+ssize_t get_nodeindex(list_t *head, list_t *node)
 {
     size_t index = 0;
 
