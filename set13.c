@@ -90,7 +90,7 @@ list_t *find_node_starts_with(list_t *head, char *prefix, char c)
 {
     for (; head != NULL; head = head->next)
     {
-        char *p = starts_with(head->str, prefix);
+        char *p = it_starts_with(head->str, prefix);
         if (p != NULL && ((c == -1) || (*p == c)))
             return head;
     }
