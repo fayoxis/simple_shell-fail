@@ -38,8 +38,8 @@ void set_shell_inform(inform_t *_inform, char **arguments)
             ;
         _inform->argumentCount = i;
 
-        replace_alias(_inform);
-        replace_variables(_inform);
+        replacealias(_inform);
+        replacevariables(_inform);
     }
 }
 
@@ -60,11 +60,11 @@ void free_shell_info(inform_t *_inform, int freeAll)
             if (!_inform->commandBuffer)
                 free(_inform->argument);
             if (_inform->environment)
-                free_list(&(_inform->environment));
+                freeList(&(_inform->environment));
             if (_inform->history)
-                free_list(&(_inform->history));
+                freeList(&(_inform->history));
             if (_inform->alias)
-                free_list(&(_inform->alias));
+                freeList(&(_inform->alias));
             ffree(_inform->environ);
             _inform->environ = NULL;
             bfree((void **)_inform->commandBuffer);
@@ -75,12 +75,12 @@ void free_shell_info(inform_t *_inform, int freeAll)
     } while (0);
 }
 /**
- * get_history_file - gets the history file
+ * gethistory_file - gets the history file
  * @info: parameter struct
  *
  * Return: allocated string containing history file
  */
-char *get_history_file(info_t *info)
+char *gethistory_file(info_t *info)
 {
     char *buf, *dir;
 
@@ -98,16 +98,16 @@ char *get_history_file(info_t *info)
 }
 
 /**
- * write_history - creates a file, or appends to an existing file
- * @info: the parameter struct
+ * write_the_history - creates a file, or appends to an existing file
+ * @inform: the parameter struct
  *
  * Return: 1 on success, else -1
  */
-int write_history(info_t *info)
+int write_the_history(inform_t *inform)
 {
     ssize_t fd;
-    char *filename = get_history_file(info);
-    list_t *node = info->history;
+    char *filename = gethistory_file(info);
+    list_t *node = inform->history;
 
     if (!filename)
         return (-1);
