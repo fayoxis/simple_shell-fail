@@ -36,7 +36,7 @@ int print_decimal_number(int n, int file_des)
     if (n < 0)
     {
         absolute = -n;
-        output_char('-');
+        _putchar('-');
         count++;
     }
     else
@@ -45,7 +45,7 @@ int print_decimal_number(int n, int file_des)
 
     // Modified loop
     do {
-        output_char('0' + current % 10);
+        _putchar('0' + current % 10);
         count++;
         current /= 10;
     } while (current != 0);
