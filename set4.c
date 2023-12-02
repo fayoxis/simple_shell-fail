@@ -26,7 +26,7 @@ int printEnvironment(inform_t *inform)
  *
  * Return: The value of the environment variable, or NULL if not found.
  */
-char *getenvValue(inform_t *inform, const char *name)
+char *_getenv(inform_t *inform, const char *name)
 {
     list_t *node = inform->env;
     char *value = NULL;
