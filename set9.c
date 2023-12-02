@@ -10,7 +10,7 @@ char **get_environment(inform_t *inform)
 {
     if (!inform->environ || inform->env_changed)
     {
-        inform->environ = list_to_strings(inform->env);
+        inform->environ = convert_list_to_strings(inform->env);
         inform->env_changed = 0;
     }
 
@@ -35,7 +35,7 @@ int _unsetenv(inform_t *inform, char *var)
 
     while (node)
     {
-        p = starts_with(node->str, var);
+        p = it_starts_with(node->str, var);
         if (p && *p == '=')
         {
             if (!prev)
@@ -80,7 +80,7 @@ int _setenv(inform_t *inform, char *var, char *value)
     node = inform->env;
     while (node)
     {
-        p = what_starts_with(node->str, var);
+        p = it_starts_with(node->str, var);
         if (p && *p == '=')
         {
             free(node->str);
@@ -90,7 +90,7 @@ int _setenv(inform_t *inform, char *var, char *value)
         }
         node = node->next;
     }
-    add_node_end(&(inform->env), buf, 0);
+    add_newnode(&(inform->env), buf, 0);
     free(buf);
     inform->env_changed = 1;
     return (0);
