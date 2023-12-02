@@ -12,7 +12,7 @@ int readHistoryFromFile(inform_t *inform)
     int lineCount = 0;
     ssize_t fileDescriptor, bytesRead;
     struct stat fileInfo;
-    char *buffer = NULL, *filename = getHistoryFile(inform);
+    char *buffer = NULL, *filename = gethistory_file(inform);
 
     if (!filename)
         return 0;
@@ -67,7 +67,7 @@ int readHistoryFromFile(inform_t *inform)
 
     inform->historyCount = lineCount;
     while (inform->historyCount >= HISTORY_MAX)
-        deleteNodeAtIndex(&(inform->history), 0);
+         delete_nodeindex(&(inform->history), 0);
 
     renumberHistory(inform);
 
