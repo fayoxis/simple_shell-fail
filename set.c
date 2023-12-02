@@ -3,9 +3,9 @@
 /**
  * exit_shell - Exits the shell
  * @inform: Structure containing potential arguments. Used to maintain
- *          a constant function prototype.
+ * a constant function prototype.
  * Return: Exits the shell with a given exit status.
- *         Returns 0 if inform.argv[0] is not "exit".
+ * Returns 0 if inform.argv[0] is not "exit".
  */
 int exit_shell(inform_t *inform)
 {
@@ -18,23 +18,23 @@ int exit_shell(inform_t *inform)
 
         if (inform->argv[1])  /* If there is an exit argument */
         {
-            exit_status = string_to_int(inform->argv[1]);
+            exit_status = str_integer(inform->argv[1]);
             if (exit_status == -1)
             {
                 inform->status = 2;
                 print_error(inform, "Illegal number: ");
-                print_string(inform->argv[1]);
-                print_character('\n');
+                _eputs(inform->argv[1]);
+               _eputchar('\n');
                 input_valid = 0;  /* Invalid input, repeat the loop */
             }
             else
             {
-                inform->err_num = exit_status;
+                inform->error_num = exit_status;
             }
         }
         else
         {
-            inform->err_num = -1;
+            inform->error_num = -1;
         }
     } while (!input_valid);
 
@@ -143,8 +143,8 @@ int remove_alias(info_t *info, char *alias)
 			return 1;
 		c = *p;
 		*p = '\0';
-		ret = delete_thenotes_AIN(&(info->alias),
-		get_thenote_IN(info->alias, node_starts_with(info->alias, alias, -1)));
+		ret =  delete_nodeindex(&(info->alias),
+		 get_nodeindex(info->alias, find_node_starts_with(info->alias, alias, -1)));
 		*p = c;
 		if (ret == 0)
 			break;
