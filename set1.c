@@ -3,7 +3,6 @@
 /**
  * checkInteractiveMode - returns true if the shell is in interactive mode
  * @infoPtr: pointer to info struct
- *
  * Return: 1 if in interactive mode, 0 otherwise
  */
 int checkInteractiveMode(info_t *infoPtr)
