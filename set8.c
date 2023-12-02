@@ -32,8 +32,8 @@ ssize_t buffer_input(inform_t *inform, char **buffer, size_t *length)
                 bytesRead--;
             }
             inform->linecount_flag = 1;
-            remove_comments(*buffer);
-            build_history_list(inform, *buffer, inform->histcount++);
+            remove_comments_from_string(*buffer);
+            buildHistoryList(inform, *buffer, inform->histcount++);
             /* Check if this is a command chain */
             if (_strchr(*buffer, ';'))
             {
@@ -71,10 +71,10 @@ ssize_t get_input(inform_t *inform)
             j = bufferIndex; /* Initialize a new iterator to the current buffer position */
             p = buffer + bufferIndex; /* Get a pointer for return */
 
-            check_chain(inform, buffer, &j, bufferIndex, bufferLength);
+            the_check_chain(inform, buffer, &j, bufferIndex, bufferLength);
             while (j < bufferLength) /* Iterate to find a semicolon or the end */
             {
-                if (is_chain(inform, buffer, &j))
+                if (is_chain_char(inform, buffer, &j))
                     break;
                 j++;
             }
