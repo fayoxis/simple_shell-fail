@@ -1,8 +1,7 @@
 /**
- * setAlias - Sets an alias to a given string.
- * @inform: Pointer to the parameter struct.
- * @str: The string representing the alias.
- *
+ * setAlias - it is to Sets an alias to a given string.
+ * @inform: when Pointer point to the parameter struct.
+ * @str: this refers to The string representing the alias.
  * Return: Always 0 on success, 1 on error.
  */
 int setAlias(inform_t *inform, char *str)
@@ -20,10 +19,10 @@ int setAlias(inform_t *inform, char *str)
 }
 
 /**
- * printAlias - Prints an alias string.
- * @node: The alias node.
+ * printAlias - it is Printing an alias string.
+ * @node: well this is the alias node.
  *
- * Return: Always 0 on success, 1 on error.
+ * Return: will Always 0 on success, 1 on error.
  */
 int printAlias(list_t *node)
 {
@@ -43,10 +42,9 @@ int printAlias(list_t *node)
 }
 
 /**
- * myAlias - Mimics the alias builtin (man alias).
- * @inform: Structure containing potential arguments. Used to maintain
- *         constant function prototype.
- *
+ * myAlias - this will Mimics the alias builtin (man alias).
+ * @inform: it is the Structure containing potential arguments.
+ * Used to maintain constant function prototype.
  * Return: Always 0.
  */
 int myAlias(inform_t *inform)
