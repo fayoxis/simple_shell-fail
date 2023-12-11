@@ -4,7 +4,7 @@
  * initialize_shell_info - Initializes the info_t struct.
  * @inform: Pointer to the struct.
  */
-void initialize_shell_inform(inform_t *_inform)
+void initialize_shell_inform(inform_t *inform)
 {
     inform->argument = NULL;
     inform->arguments = NULL;
@@ -48,7 +48,7 @@ void set_shell_inform(inform_t *inform, char **arguments)
  * @inform: Pointer to the struct.
  * @freeAll: True if freeing all fields.
  */
-void free_shell_info(inform_t *_inform, int freeAll)
+void free_shell_info(inform_t *inform, int freeAll)
 {
     do
     {
