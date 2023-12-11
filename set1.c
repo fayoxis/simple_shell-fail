@@ -40,7 +40,7 @@ int isAlphabetic(int ch)
     /*Loop to handle multiple characters */
   
     do {
-        if ((c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z'))
+        if ((ch >= 'a' && ch <= 'z') || (ch >= 'A' && ch <= 'Z'))
             result = 1;
         else
             result = 0;
