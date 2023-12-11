@@ -5,7 +5,7 @@
  * @infoPtr: pointer to info struct
  * Return: 1 if in interactive mode, 0 otherwise
  */
-int checkInteractiveMode(info_t *infoPtr)
+int checkInteractiveMode(inform_t *infoPtr)
 {
     return (isatty(STDIN_FILENO) && infoPtr->readfd <= 2);
 }
