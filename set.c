@@ -5,7 +5,7 @@
  * @inform: Structure containing potential arguments. Used to maintain
  * a constant function prototype.
  * Return: Exits the shell with a given exit status.
- * Returns 0 if inform.argv[0] is not "exit".
+ * Returns 0 if inform.arguments[0] is not "exit".
  */
 int exit_shell(inform_t *inform)
 {
@@ -16,14 +16,14 @@ int exit_shell(inform_t *inform)
     {
         input_valid = 1;  /* Assume input is valid */
 
-        if (inform->argv[1])  /* If there is an exit argument */
+        if (inform->arguments[1])  /* If there is an exit argument */
         {
-            exit_status = str_integer(inform->argv[1]);
+            exit_status = str_integer(inform->arguments[1]);
             if (exit_status == -1)
             {
                 inform->status = 2;
                 print_error(inform, "Illegal number: ");
-                _eputs(inform->argv[1]);
+                _eputs(inform->arguments[1]);
                _eputchar('\n');
                 input_valid = 0;  /* Invalid input, repeat the loop */
             }
@@ -56,14 +56,14 @@ int change_Directory(inform_t *inform)
         if (!s)
             _puts("ERROR: Failed to retrieve current working directory\n");
 
-        if (!inform->argv[1]) {
+        if (!inform->arguments[1]) {
             dir = _getenv(inform, "HOME=");
             if (!dir)
                 chdir_ret = chdir((dir = _getenv(inform, "PWD=")) ? dir : "/");
             else
                 chdir_ret = chdir(dir);
         }
-        else if (_strcmp(inform->argv[1], "-") == 0) {
+        else if (_strcmp(inform->arguments[1], "-") == 0) {
             if (!_getenv(inform, "OLDPWD=")) {
                 _puts(s);
                 _putchar('\n');
@@ -74,12 +74,12 @@ int change_Directory(inform_t *inform)
             chdir_ret = chdir((dir = _getenv(inform, "OLDPWD=")) ? dir : "/");
         }
         else {
-            chdir_ret = chdir(inform->argv[1]);
+            chdir_ret = chdir(inform->arguments[1]);
         }
 
         if (chdir_ret == -1) {
             print_error(inform, "Failed to change directory to ");
-            _eputs(inform->argv[1]);
+            _eputs(inform->arguments[1]);
             _eputchar('\n');
         }
         else {
@@ -100,14 +100,14 @@ int change_Directory(inform_t *inform)
  */
 int custom_help(inform_t *inform)
 {
-    char **arg = inform->arg;
+    char **argument = inform->argument;
     int i;
 
     _puts("The help command is called. This function is not implemented yet.\n");
 
-    for (i = 0; arg[i] != NULL; i++)
+    for (i = 0; argument[i] != NULL; i++)
     {
-        _puts(arg[i]);
+        _puts(argument[i]);
     }
 
     return (0);
