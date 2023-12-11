@@ -2,44 +2,44 @@
 
 /**
  * initialize_shell_info - Initializes the info_t struct.
- * @_inform: Pointer to the struct.
+ * @inform: Pointer to the struct.
  */
 void initialize_shell_inform(inform_t *_inform)
 {
-    _inform->argument = NULL;
-    _inform->arguments = NULL;
-    _inform->path = NULL;
-    _inform->argumentCount = 0;
+    inform->argument = NULL;
+    inform->arguments = NULL;
+    inform->path = NULL;
+    inform->argumentCount = 0;
 }
 
 /**
  * set_shell_inform - Initializes the info_t struct.
- * @_inform: Pointer to the struct.
+ * @inform: Pointer to the struct.
  * @arguments: Argument vector.
  */
-void set_shell_inform(inform_t *_inform, char **arguments)
+void set_shell_inform(inform_t *inform, char **arguments)
 {
     int i = 0;
 
-    _inform->file_name = arguments[0];
-    if (_inform->argument)
+    inform->file_name = arguments[0];
+    if (inform->argument)
     {
-        _inform->arguments = strtow(_inform->argument, " \t");
-        if (!_inform->arguments)
+        inform->arguments = strtok( inform->argument, " \t");
+        if (!inform->arguments)
         {
-            _inform->arguments = malloc(sizeof(char *) * 2);
-            if (_inform->arguments)
+            inform->arguments = malloc(sizeof(char *) * 2);
+            if (inform->arguments)
             {
-                _inform->arguments[0] = _strdup(_inform->argument);
-                _inform->arguments[1] = NULL;
+                inform->arguments[0] = _strdup(inform->argument);
+                inform->arguments[1] = NULL;
             }
         }
-        for (i = 0; _inform->arguments && _inform->arguments[i]; i++)
+        for (i = 0; inform->arguments && inform->arguments[i]; i++)
             ;
-        _inform->argumentCount = i;
+        inform->argumentCount = i;
 
-        replacealias(_inform);
-        replacevariables(_inform);
+        replacealias(inform);
+        replacevariables(inform);
     }
 }
 
@@ -52,39 +52,39 @@ void free_shell_info(inform_t *_inform, int freeAll)
 {
     do
     {
-        ffree(_inform->arguments);
-        _inform->arguments = NULL;
-        _inform->path = NULL;
+        free(_inform->arguments);
+        inform->arguments = NULL;
+        inform->path = NULL;
         if (freeAll)
         {
-            if (!_inform->commandBuffer)
-                free(_inform->argument);
-            if (_inform->environment)
-                freeList(&(_inform->environment));
-            if (_inform->history)
-                freeList(&(_inform->history));
-            if (_inform->alias)
-                freeList(&(_inform->alias));
-            ffree(_inform->environ);
-            _inform->environ = NULL;
-            bfree((void **)_inform->commandBuffer);
-            if (_inform->readfd > 2)
-                close(_inform->readfd);
+            if (!inform->commandBuffer)
+                free(inform->argument);
+            if (inform->environment)
+                freeList(&(inform->environment));
+            if (inform->history)
+                freeList(&(inform->history));
+            if (inform->alias)
+                freeList(&(inform->alias));
+            free(inform->environment);
+            inform->environment = NULL;
+            free((void **)inform->commandBuffer);
+            if (inform->readfd > 2)
+                close(inform->readfd);
             _putchar(BUF_FLUSH);
         }
     } while (0);
 }
 /**
  * gethistory_file - gets the history file
- * @info: parameter struct
+ * @inform: parameter struct
  *
  * Return: allocated string containing history file
  */
-char *gethistory_file(info_t *info)
+char *gethistory_file(inform_t *inform)
 {
     char *buf, *dir;
 
-    dir = _getenv(info, "HOME=");
+    dir = _getenv(inform, "HOME=");
     if (!dir)
         return (NULL);
     buf = malloc(sizeof(char) * (_strlen(dir) + _strlen(HIST_FILE) + 2));
@@ -106,7 +106,7 @@ char *gethistory_file(info_t *info)
 int write_the_history(inform_t *inform)
 {
     ssize_t fd;
-    char *filename = gethistory_file(info);
+    char *file_name = gethistory_file(info);
     list_t *node = inform->history;
 
     if (!file_name)
