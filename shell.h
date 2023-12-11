@@ -142,9 +142,9 @@ char *_strncat(char *str, const char *src, int n);
 char *_strchr(const char *str, char ch);
 ssize_t buffer_input(inform_t *inform, char **buffer, size_t *length);
 ssize_t get_input(inform_t *inform);
-ssize_t read_Buffer(info_t *info, char *buffer, size_t *size);
+ssize_t read_Buffer(inform_t *inform, char *buffer, size_t *size);
 
-int get_the_Line(info_t *info, char **ptr, size_t *length);
+int get_the_Line(inform_t *inform, char **ptr, size_t *length);
 void signal_Handler(__attribute__((unused))int signalNum);
 char **get_environment(inform_t *inform);
 int _unsetenv(inform_t *inform, char *var);
@@ -153,7 +153,7 @@ void initialize_shell_inform(inform_t *_inform);
 
 void set_shell_inform(inform_t *_inform, char **arguments);
 void free_shell_info(inform_t *_inform, int freeAll);
-char *gethistory_file(info_t *info);
+char *gethistory_file(inform_t *inform);
 int write_the_history(inform_t *inform);
 int readHistoryFromFile(inform_t *inform);
 int buildHistoryList(inform_t *inform, char *buffer, int line_count);
