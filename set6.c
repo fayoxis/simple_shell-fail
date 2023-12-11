@@ -30,6 +30,7 @@ void print_error_message(inform_t *inform, char *error_str)
 int print_decimal_number(int n, int file_des) {
 int count = 0;
 unsigned int absolute, current;
+int (*__putchar)(char) = _putchar;
 if (file_des == STDERR_FILENO)
     _putchar = _eputchar;
 
