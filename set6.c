@@ -26,32 +26,33 @@ void print_error_message(inform_t *inform, char *error_str)
  *
  * Return: number of characters printed
  */
+
 int print_decimal_number(int n, int file_des) {
-    int count = 0;
-    unsigned int absolute, current;
+int count = 0;
+unsigned int absolute, current;
 
-    void (*putchar_func)(int) = _putchar;
+ini
+Copy
+if (file_des == STDERR_FILENO)
+    _putchar = _eputchar;
 
-    if (file_des == STDERR_FILENO)
-        putchar_func = _eputchar;
+if (n < 0) {
+    absolute = -n;
+    _putchar('-');
+    count++;
+} else {
+    absolute = n;
+}
 
-    if (n < 0) {
-        absolute = -n;
-        putchar_func('-');
-        count++;
-    } else {
-        absolute = n;
-    }
+current = absolute;
 
-    current = absolute;
+do {
+    _putchar('0' + current % 10);
+    count++;
+    current /= 10;
+} while (current != 0);
 
-    do {
-        putchar_func('0' + current % 10);
-        count++;
-        current /= 10;
-    } while (current != 0);
-
-    return count;
+return count;
 }
 
 /**
