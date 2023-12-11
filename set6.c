@@ -8,7 +8,7 @@
  */
 void print_error_message(inform_t *inform, char *error_str)
 {
-    int file_des;
+    int file_des = 0;
     
     _eputs(inform->file_name);
     _eputs(": ");
@@ -18,7 +18,6 @@ void print_error_message(inform_t *inform, char *error_str)
     _eputs(": ");
     _eputs(error_str);
 }
-
 /**
  * print_decimal_number - function prints a decimal (integer) number (base 10)
  * @n: the input
@@ -27,7 +26,8 @@ void print_error_message(inform_t *inform, char *error_str)
  * Return: number of characters printed
  */
 
-int print_decimal_number(int n, int file_des) {
+int print_decimal_number(int n, int file_des)
+{
     int count = 0;
     unsigned int absolute, current;
     int (*_putchar)(char) = _putchar;
