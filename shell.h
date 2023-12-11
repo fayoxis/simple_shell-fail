@@ -150,10 +150,10 @@ void signal_Handler(__attribute__((unused))int signalNum);
 char **get_environment(inform_t *inform);
 int _unsetenv(inform_t *inform, char *var);
 int _setenv(inform_t *inform, char *var, char *value);
-void initialize_shell_inform(inform_t *_inform);
+void initialize_shell_inform(inform_t *inform);
 
-void set_shell_inform(inform_t *_inform, char **arguments);
-void free_shell_info(inform_t *_inform, int freeAll);
+void set_shell_inform(inform_t *inform, char **arguments);
+void free_shell_info(inform_t *inform, int freeAll);
 char *gethistory_file(inform_t *inform);
 int write_the_history(inform_t *inform);
 int readHistoryFromFile(inform_t *inform);
