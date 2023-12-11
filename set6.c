@@ -30,12 +30,14 @@ int print_decimal_number(int n, int file_des) {
     int count = 0;
     unsigned int absolute, current;
 
+    void (*putchar_func)(int) = _putchar;
+
     if (file_des == STDERR_FILENO)
-        _putchar = _eputchar;
+        putchar_func = _eputchar;
 
     if (n < 0) {
         absolute = -n;
-        _putchar('-');
+        putchar_func('-');
         count++;
     } else {
         absolute = n;
@@ -44,7 +46,7 @@ int print_decimal_number(int n, int file_des) {
     current = absolute;
 
     do {
-        _putchar('0' + current % 10);
+        putchar_func('0' + current % 10);
         count++;
         current /= 10;
     } while (current != 0);
