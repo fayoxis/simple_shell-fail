@@ -38,7 +38,7 @@ ssize_t buffer_input(inform_t *inform, char **buffer, size_t *length)
             if (_strchr(*buffer, ';'))
             {
                 *length = bytesRead;
-                inform->cmd_buffer = buffer;
+                inform->commandBuffer = buffer;
             }
         }
     }
