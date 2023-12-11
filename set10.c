@@ -21,7 +21,7 @@ void set_shell_inform(inform_t *_inform, char **arguments)
 {
     int i = 0;
 
-    _inform->filename = arguments[0];
+    _inform->file_name = arguments[0];
     if (_inform->argument)
     {
         _inform->arguments = strtow(_inform->argument, " \t");
@@ -109,11 +109,11 @@ int write_the_history(inform_t *inform)
     char *filename = gethistory_file(info);
     list_t *node = inform->history;
 
-    if (!filename)
+    if (!file_name)
         return (-1);
 
-    fd = open(filename, O_CREAT | O_TRUNC | O_RDWR, 0644);
-    free(filename);
+    fd = open(file_name, O_CREAT | O_TRUNC | O_RDWR, 0644);
+    free(file_name);
     if (fd == -1)
         return (-1);
 
