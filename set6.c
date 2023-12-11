@@ -8,7 +8,8 @@
  */
 void print_error_message(inform_t *inform, char *error_str)
 {
-    // Original code
+    FILE *file_des;
+    
     _eputs(inform->file_name);
     _eputs(": ");
     print_decimal_number(inform->line_count, file_des);
@@ -25,22 +26,21 @@ void print_error_message(inform_t *inform, char *error_str)
  *
  * Return: number of characters printed
  */
-int print_decimal_number(int n, int file_des)
-{
-    int (*output_char)(char) = _putchar;
-    int i, count = 0;
+int print_decimal_number(int n, int file_des) {
+    int count = 0;
     unsigned int absolute, current;
 
     if (file_des == STDERR_FILENO)
-        output_char = _eputchar;
-    if (n < 0)
-    {
+        _putchar = _eputchar;
+
+    if (n < 0) {
         absolute = -n;
         _putchar('-');
         count++;
-    }
-    else
+    } else {
         absolute = n;
+    }
+
     current = absolute;
 
     do {
