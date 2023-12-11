@@ -28,29 +28,30 @@ void print_error_message(inform_t *inform, char *error_str)
  */
 
 int print_decimal_number(int n, int file_des) {
-int count = 0;
-unsigned int absolute, current;
-int (*_putchar)(char) = _putchar;
-if (file_des == STDERR_FILENO)
-    _putchar = _eputchar;
-
-if (n < 0) {
-    absolute = -n;
-    _putchar('-');
-    count++;
-} else {
-    absolute = n;
-}
-
-current = absolute;
-
-do {
-    _putchar('0' + current % 10);
-    count++;
-    current /= 10;
-} while (current != 0);
-
-return count;
+    int count = 0;
+    unsigned int absolute, current;
+    int (*_putchar)(char) = _putchar;
+    
+    if (file_des == STDERR_FILENO)
+        _putchar = _eputchar;
+        
+    if (n < 0) {
+        absolute = -n;
+        _putchar('-');
+        count++;
+    } else {
+        absolute = n;
+    }
+    
+    current = absolute;
+    
+    do {
+        _putchar('0' + current % 10);
+        count++;
+        current /= 10;
+    } while (current != 0);
+    
+    return count;
 }
 
 /**
