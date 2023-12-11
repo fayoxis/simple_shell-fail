@@ -53,7 +53,7 @@ int myAlias(inform_t *inform)
     char *equalPos;
     list_t *node;
 
-    if (inform->argc == 1)
+    if (inform->argumentCount== 1)
     {
         node = inform->alias;
         while (node)
@@ -64,21 +64,21 @@ int myAlias(inform_t *inform)
         return 0;
     }
 
-    for (i = 1; inform->argv[i]; i++)
+    for (i = 1; inform->arguments[i]; i++)
     {
-        equalPos = _strchr(inform->argv[i], '=');
+        equalPos = _strchr(inform->arguments[i], '=');
         if (equalPos)
         {
-            setAlias(inform, inform->argv[i]);
+            setAlias(inform, inform->arguments[i]);
         }
     }
 
-    for (i = 1; inform->argv[i]; i++)
+    for (i = 1; inform->arguments[i]; i++)
     {
-        equalPos = _strchr(inform->argv[i], '=');
+        equalPos = _strchr(inform->arguments[i], '=');
         if (!equalPos)
         {
-            node = find_node_starts_with(inform->alias, inform->argv[i], '=');
+            node = find_node_starts_with(inform->alias, inform->arguments[i], '=');
             printAlias(node);
         }
     }
