@@ -33,7 +33,7 @@ char *_getenv(inform_t *inform, const char *name)
 
     while (node != NULL)
     {
-        if (_it_starts_with(node->str, name))
+        if (it_starts_with(node->str, name))
         {
             value = strchr(node->str, '=');
             if (value != NULL)
