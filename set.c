@@ -116,23 +116,23 @@ int custom_help(inform_t *inform)
 
 /**
  * display_history - Displays the history list, one command per line, with line numbers starting at 0.
- * @info: Structure containing potential arguments. Used to maintain constant function prototype.
+ * @inform: Structure containing potential arguments. Used to maintain constant function prototype.
  * Return: Always 0.
  */
-int display_history(info_t *info)
+int display_history(inform_t *inform)
 {
-	print_list(info->history);
+	print_list(inform->history);
 	return 0;
 }
 
 /**
  * remove_alias - Removes an alias from the alias list.
- * @info: Parameter struct.
+ * @inform: Parameter struct.
  * @alias: The alias string to be removed.
  *
  * Return: Always 0 on success, 1 on error.
  */
-int remove_alias(info_t *info, char *alias)
+int remove_alias(inform_t *inform, char *alias)
 {
 	char *p, c;
 	int ret;
@@ -143,8 +143,8 @@ int remove_alias(info_t *info, char *alias)
 			return 1;
 		c = *p;
 		*p = '\0';
-		ret =  delete_nodeindex(&(info->alias),
-		 get_nodeindex(info->alias, find_node_starts_with(info->alias, alias, -1)));
+		ret =  delete_nodeindex(&(inform->alias),
+		 get_nodeindex(inform->alias, find_node_starts_with(inform->alias, alias, -1)));
 		*p = c;
 		if (ret == 0)
 			break;
