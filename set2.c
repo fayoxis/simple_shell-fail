@@ -1,3 +1,5 @@
+#include "shell.h"
+
 /**
  * setAlias - it is to Sets an alias to a given string.
  * @inform: when Pointer point to the parameter struct.
