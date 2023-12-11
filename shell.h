@@ -78,6 +78,7 @@ typedef struct passinginform
     char *path;
     int argumentCount;
     unsigned int line_count;
+    int file_des;
     int error_num;
     int linecount_flag;
     char *file_name;
