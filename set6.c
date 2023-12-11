@@ -13,7 +13,7 @@ void print_error_message(inform_t *inform, char *error_str)
     _eputs(": ");
     print_decimal_number(inform->line_count, file_des);
     _eputs(": ");
-    _eputs(inform->argv[0]);
+    _eputs(inform->arguments[0]);
     _eputs(": ");
     _eputs(error_str);
 }
@@ -43,7 +43,6 @@ int print_decimal_number(int n, int file_des)
         absolute = n;
     current = absolute;
 
-    // Modified loop
     do {
         _putchar('0' + current % 10);
         count++;
