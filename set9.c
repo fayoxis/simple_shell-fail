@@ -8,13 +8,13 @@
  */
 char **get_environment(inform_t *inform)
 {
-    if (!inform->environ || inform->env_changed)
+    if (!inform->environment || inform->env_changed)
     {
-        inform->environ = convert_list_to_strings(inform->env);
+        inform->environment= convert_list_to_strings(inform->env);
         inform->env_changed = 0;
     }
 
-    return (inform->environ);
+    return (inform->environment);
 }
 
 /**
