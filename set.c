@@ -107,12 +107,12 @@ int custom_help(inform_t *inform)
 
     _puts("The help command is called. This function is not implemented yet.\n");
 
-    for (i = 0; argument[i] != NULL; i++)
+    for (i = 0; argument[i] != '\0'; i++)
     {
-        _puts(argument[i]);
+        _puts(&argument[i]);
     }
 
-    return (0);
+    return 0;
 }
 
 /**
