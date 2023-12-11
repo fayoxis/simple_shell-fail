@@ -12,22 +12,22 @@
 #include <fcntl.h>
 #include <errno.h>
 
-/* for read/write buffers */
+
 #define READ_BUF_SIZE 1024
 #define WRITE_BUF_SIZE 1024
 #define BUF_FLUSH -1
 
-/* for command chaining */
+
 #define CMD_NORM	0
 #define CMD_OR		1
 #define CMD_AND		2
 #define CMD_CHAIN	3
 
-/* for convert_number() */
+
 #define CONVERT_LOWERCASE	1
 #define CONVERT_UNSIGNED	2
 
-/* 1 if using system getline() */
+
 #define USE_GETLINE 0
 #define USE_STRTOK 0
 
@@ -38,10 +38,10 @@ extern char **environment;
 
 
 /**
- * struct liststr - singly linked list
- * @num: the number field
- * @str: a string
- * @next: points to the next node
+ * struct liststr - this is singly linked list
+ * @num: the  number is a field
+ * @str: this is a  string
+ * @next: this points to the next node
  */
 typedef struct liststr
 {
@@ -51,7 +51,7 @@ typedef struct liststr
 } list_t;
 /**
  * struct passinginform - Contains pseudo-arguments to pass into a function,
- *                  allowing a uniform prototype for a function pointer struct.
+ * allowing a uniform prototype for a function pointer struct.
  * @argument: A string generated from `getline` containing arguments.
  * @arguments: An array of strings generated from `argument`.
  * @path: A string path for the current command.
@@ -88,8 +88,8 @@ typedef struct passinginform
     int env_changed;
     int status;
 
-    char **commandBuffer; /* Pointer to command ';' chain buffer, for memory management */
-    int cmd_buffer_type; /* Command type (`CMD_type`), `||`, `&&`, or `;` */
+    char **commandBuffer; 
+    int cmd_buffer_type;
     int readfd;
     int historyCount;
 } inform_t;
