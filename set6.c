@@ -8,7 +8,7 @@
  */
 void print_error_message(inform_t *inform, char *error_str)
 {
-    FILE *file_des;
+    int file_des;
     
     _eputs(inform->file_name);
     _eputs(": ");
