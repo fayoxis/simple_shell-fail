@@ -102,7 +102,7 @@ int change_Directory(inform_t *inform)
  */
 int custom_help(inform_t *inform)
 {
-    char **argument = inform->argument;
+    char *argument = inform->argument;
     int i;
 
     _puts("The help command is called. This function is not implemented yet.\n");
@@ -114,7 +114,6 @@ int custom_help(inform_t *inform)
 
     return (0);
 }
-#include "shell.h"
 
 /**
  * display_history - Displays the history list, one command per line, with line numbers starting at 0.
