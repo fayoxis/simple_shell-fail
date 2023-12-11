@@ -24,7 +24,7 @@ int exit_shell(inform_t *inform)
                 inform->status = 2;
                 print_error(inform, "Illegal number: ");
                 _eputs(inform->arguments[1]);
-               _eputchar('\n');
+                _eputchar('\n');
                 input_valid = 0;  /* Invalid input, repeat the loop */
             }
             else
@@ -121,7 +121,7 @@ int custom_help(inform_t *inform)
  */
 int display_history(inform_t *inform)
 {
-	print_list(inform->history);
+	print_liststr(inform->history);
 	return 0;
 }
 
