@@ -56,12 +56,12 @@ char *_getenv(inform_t *inform, const char *name)
  */
 int setEnvironment(inform_t *inform)
 {
-    if (inform->argc != 3)
+    if (inform->argumentCount != 3)
     {
         _eputs("Incorrect number of arguments\n");
         return 1;
     }
-    if (_setenv(inform, inform->argv[1], inform->argv[2]))
+    if (_setenv(inform, inform->arguments[1], inform->arguments[2]))
         return 0;
     return 1;
 }
@@ -75,13 +75,13 @@ int removeEnvironmentVariable(inform_t *inform)
 {
     int i;
 
-    if (inform->argc <= 1)
+    if (inform->argumentCount <= 1)
     {
         _eputs("Too few arguments.\n");
         return (1);
     }
-    for (i = 1; i < inform->argc; i++)
-        _unsetenv(inform, inform->argv[i]);
+    for (i = 1; i < inform->argumentCount; i++)
+        _unsetenv(inform, inform->arguments[i]);
 
     return (0);
 }
