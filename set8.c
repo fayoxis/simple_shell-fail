@@ -62,6 +62,7 @@ ssize_t get_input(inform_t *inform)
 
     while (1)
     {
+        
         bytesRead = buffer_input(inform, &buffer, &bufferLength);
         if (bytesRead == -1) /* EOF */
             return -1;
@@ -143,7 +144,7 @@ int get_the_Line(inform_t *inform, char **ptr, size_t *length)
         if (currentIndex == bufferSize)
             currentIndex = bufferSize = 0;
 
-        bytesRead = readBuffer(info, buffer, &bufferSize);
+        bytesRead = readBuffer(inform, buffer, &bufferSize);
         if (bytesRead == -1 || (bytesRead == 0 && bufferSize == 0))
             return -1;
 
