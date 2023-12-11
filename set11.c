@@ -9,16 +9,16 @@
  */
 int readHistoryFromFile(inform_t *inform)
 {
-    int lineCount = 0;
+    int line_count = 0;
     ssize_t fileDescriptor, bytesRead;
     struct stat fileInfo;
-    char *buffer = NULL, *filename = gethistory_file(inform);
+    char *buffer = NULL, *file_name = gethistory_file(inform);
 
-    if (!filename)
+    if (!file_name)
         return 0;
 
-    fileDescriptor = open(filename, O_RDONLY);
-    free(filename);
+    fileDescriptor = open(file_name, O_RDONLY);
+    free(file_name);
     if (fileDescriptor == -1)
         return 0;
     if (fstat(fileDescriptor, &fileInfo) != 0)
@@ -55,17 +55,17 @@ int readHistoryFromFile(inform_t *inform)
         if (buffer[i] == '\n')
         {
             buffer[i] = '\0';
-            buildHistoryList(inform, buffer + last, lineCount++);
+            buildHistoryList(inform, buffer + last, line_count++);
             last = i + 1;
         }
     }
 
     if (last != bytesRead)
-        buildHistoryList(inform, buffer + last, lineCount++);
+        buildHistoryList(inform, buffer + last, line_count++);
 
     free(buffer);
 
-    inform->historyCount = lineCount;
+    inform->historyCount = line_count;
     while (inform->historyCount >= HISTORY_MAX)
          delete_nodeindex(&(inform->history), 0);
 
@@ -78,7 +78,7 @@ int readHistoryFromFile(inform_t *inform)
  * buildHistoryList - adds an entry to the history linked list
  * @inform: the parameter struct
  * @buffer: the buffer containing the history entry
- * @lineCount: the line count of the history entry
+ * @line_count: the line count of the history entry
  *
  * This function adds a new entry to the history linked list. If the list is empty,
  * a new list node is created and assigned to the inform struct. Otherwise, the new
@@ -86,14 +86,14 @@ int readHistoryFromFile(inform_t *inform)
  *
  * Return: Always 0
  */
-int buildHistoryList(inform_t *inform, char *buffer, int lineCount)
+int buildHistoryList(inform_t *inform, char *buffer, int line_count)
 {
     list_t *node = malloc(sizeof(list_t));
     if (!node)
         return 0;
 
     node->str = strdup(buffer);
-    node->num = lineCount;
+    node->num = line_count;
     node->next = NULL;
 
     if (!inform->history)
@@ -122,16 +122,16 @@ int buildHistoryList(inform_t *inform, char *buffer, int lineCount)
 int renumberHistory(inform_t *inform)
 {
     list_t *node = inform->history;
-    int lineCount = 0;
+    int line_count = 0;
 
     while (node)
     {
-        node->num = lineCount++;
+        node->num = line_count++;
         node = node->next;
     }
 
-    inform->historyCount = lineCount;
-    return lineCount;
+    inform->historyCount = line_count;
+    return line_count;
 }
 
 /**
