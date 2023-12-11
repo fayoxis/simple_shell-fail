@@ -56,7 +56,7 @@ ssize_t get_input(inform_t *inform)
     static char *buffer; /* The buffer for command chains separated by ';' */
     static size_t bufferIndex, j, bufferLength;
     ssize_t bytesRead = 0;
-    char **argBuffer = &(inform->arg), *p;
+    char **argBuffer = &(inform->argument), *p;
 
     _putchar(BUF_FLUSH);
 
