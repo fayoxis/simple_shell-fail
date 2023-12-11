@@ -174,7 +174,7 @@ char *it_starts_with(const char *haystack, const char *needle);
 char *_strcat(char *dest, char *src);
 char *_strcpy(char *dest, char *src);
 char *_strdup(const char *str);
-void _puts(char **str);
+void _puts(char *str);
 int _putchar(char ch);
 
 
