@@ -45,7 +45,7 @@ void set_shell_inform(inform_t *inform, char **arguments)
 
 /**
  * free_shell_info - Frees the fields of the info_t struct.
- * @_inform: Pointer to the struct.
+ * @inform: Pointer to the struct.
  * @freeAll: True if freeing all fields.
  */
 void free_shell_info(inform_t *_inform, int freeAll)
