@@ -144,13 +144,13 @@ int get_the_Line(inform_t *inform, char **ptr, size_t *length)
         if (currentIndex == bufferSize)
             currentIndex = bufferSize = 0;
 
-        bytesRead = readBuffer(inform, buffer, &bufferSize);
+        bytesRead = read_Buffer(inform, buffer, &bufferSize);
         if (bytesRead == -1 || (bytesRead == 0 && bufferSize == 0))
             return -1;
 
         newlinePtr = _strchr(buffer + currentIndex, '\n');
         endIndex = newlinePtr ? 1 + (unsigned int)(newlinePtr - buffer) : bufferSize;
-        newInputPtr = _realloc(inputPtr, totalBytesRead, totalBytesRead ? totalBytesRead + endIndex : endIndex + 1);
+        newInputPtr = realloc(inputPtr, totalBytesRead, totalBytesRead ? totalBytesRead + endIndex : endIndex + 1);
         if (!newInputPtr) /* MALLOC FAILURE! */
             return inputPtr ? (free(inputPtr), -1) : -1;
 
