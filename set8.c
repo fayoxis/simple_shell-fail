@@ -99,7 +99,7 @@ ssize_t get_input(inform_t *inform)
 
 /**
  * read_Buffer - Reads a buffer from the specified file descriptor.
- * @info: Pointer to the parameter struct.
+ * @inform: Pointer to the parameter struct.
  * @buffer: Buffer to store the data.
  * @size: Pointer to the size of the buffer.
  *
@@ -112,7 +112,7 @@ ssize_t read_Buffer(inform_t *inform, char *buffer, size_t *size)
     if (*size)
         return 0;
 
-    bytesRead = read(info->readfd, buffer, READ_BUF_SIZE);
+    bytesRead = read(inform->readfd, buffer, READ_BUF_SIZE);
     if (bytesRead >= 0)
         *size = bytesRead;
     return bytesRead;
@@ -120,13 +120,13 @@ ssize_t read_Buffer(inform_t *inform, char *buffer, size_t *size)
 
 /**
  * get_the_Line - Gets the next line of input from STDIN.
- * @info: Pointer to the parameter struct.
+ * @inform: Pointer to the parameter struct.
  * @ptr: Address of the pointer to the buffer, preallocated or NULL.
  * @length: Size of the preallocated buffer if not NULL.
  *
  * Return: The number of bytes read, or -1 on failure.
  */
-int get_the_Line(info_t *info, char **ptr, size_t *length)
+int get_the_Line(inform_t *inform, char **ptr, size_t *length)
 {
     static char buffer[READ_BUF_SIZE];
     static size_t currentIndex, bufferSize;
