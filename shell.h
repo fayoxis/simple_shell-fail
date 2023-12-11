@@ -110,7 +110,7 @@ typedef struct builtin
 } builtin_table;
 
 
-int checkInteractiveMode(info_t *infoPtr);
+int checkInteractiveMode(inform_t *infoPtr);
 int checkDelimiter(char ch, char *delimStr);
 int isAlphabetic(int ch);
 int convertStringToInteger(char *str);
