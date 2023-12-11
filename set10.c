@@ -52,7 +52,7 @@ void free_shell_info(inform_t *inform, int freeAll)
 {
     do
     {
-        free(_inform->arguments);
+        free(inform->arguments);
         inform->arguments = NULL;
         inform->path = NULL;
         if (freeAll)
@@ -106,7 +106,7 @@ char *gethistory_file(inform_t *inform)
 int write_the_history(inform_t *inform)
 {
     ssize_t fd;
-    char *file_name = gethistory_file(info);
+    char *file_name = gethistory_file(inform);
     list_t *node = inform->history;
 
     if (!file_name)
