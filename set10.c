@@ -24,13 +24,13 @@ void set_shell_inform(inform_t *inform, char **arguments)
     inform->file_name = arguments[0];
     if (inform->argument)
     {
-        inform->arguments = strtok( inform->argument, " \t");
+        inform->arguments = strtok(inform->argument, " \t");
         if (!inform->arguments)
         {
             inform->arguments = malloc(sizeof(char *) * 2);
             if (inform->arguments)
             {
-                inform->arguments[0] = _strdup(inform->argument);
+                inform->arguments[0] = strdup(inform->argument);
                 inform->arguments[1] = NULL;
             }
         }
