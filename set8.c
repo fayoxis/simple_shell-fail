@@ -18,11 +18,11 @@ ssize_t buffer_input(inform_t *inform, char **buffer, size_t *length)
         /*bfree((void **)inform->cmd_buf);*/
         free(*buffer);
         *buffer = NULL;
-        signal(SIGINT, sigintHandler);
+        signal(SIGINT, signal_Handler);
 #if USE_GETLINE
         bytesRead = getline(buffer, &bufferLength, stdin);
 #else
-        bytesRead = _getline(inform, buffer, &bufferLength);
+        bytesRead = getline(inform, buffer, &bufferLength);
 #endif
         if (bytesRead > 0)
         {
@@ -33,7 +33,7 @@ ssize_t buffer_input(inform_t *inform, char **buffer, size_t *length)
             }
             inform->linecount_flag = 1;
             remove_comments(*buffer);
-            build_history_list(inform, *buffer, inform->historyCount++);
+            buildHistoryList(inform, *buffer, inform->historyCount++);
             /* Check if this is a command chain */
             if (_strchr(*buffer, ';'))
             {
