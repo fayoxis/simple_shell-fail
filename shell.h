@@ -96,8 +96,27 @@ typedef struct passinginform
 } inform_t;
 
 #define INFO_INIT \
-{NULL, NULL, NULL, 0, 0, 0, 0, NULL, NULL, NULL, NULL, NULL, 0, 0, NULL, \
-	0, 0, 0}
+{ \
+    NULL,       /* argument */ \
+    NULL,       /* arguments */ \
+    NULL,       /* path */ \
+    0,          /* argumentCount */ \
+    0,          /* line_count */ \
+    0,          /* file_des */ \
+    0,          /* error_num */ \
+    NULL,       /* file_name */ \
+    NULL,       /* env */ \
+    NULL,       /* history */ \
+    NULL,       /* alias */ \
+    NULL,       /* environment */ \
+    0,          /* env_changed */ \
+    0,          /* status */ \
+    NULL,       /* commandBuffer */ \
+    0,          /* cmd_buffer_type */ \
+    0,          /* readfd */ \
+    0           /* historyCount */ \
+}
+
 
 /**
  *struct builtin - contains a builtin string and related function
