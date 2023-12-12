@@ -73,11 +73,11 @@ void free_shell_info(inform_t *inform, int freeAll)
             if (!inform->commandBuffer)
                 free(inform->argument);
             if (inform->environment)
-                freeList(&(inform->environment));
+                freeList((char ***) &(inform->environment));
             if (inform->history)
-                freeList(&(inform->history));
+                freeList((char ***) &(inform->history));
             if (inform->alias)
-                freeList(&(inform->alias));
+                freeList((char ***) &(inform->alias));
             free_s(inform->environment);
             inform->environment = NULL;
             bfree((void **)inform->commandBuffer);
