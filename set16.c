@@ -10,8 +10,9 @@
 int bfree(void **ptr, int count)
 {
   int freed_count = 0;
+  int i;
 
-  for (int i = 0; i < count; i++)
+  for (i = 0; i < count; i++)
   {
     if (ptr[i] != NULL)
     {
@@ -57,13 +58,14 @@ char *duplicateChars(const char *pathstring, int start, int stop)
 {
     int length = stop - start;
     char *buffer = (char *)malloc((length + 1) * sizeof(char));
+  int k = 0;
+  int i;
 
     if (buffer == NULL) {
         return NULL;
     }
-
-    int k = 0;
-    for (int i = start; i < stop; i++)
+  
+    for (i = start; i < stop; i++)
     {
         if (pathstring[i] != ':')
         {
@@ -86,6 +88,7 @@ char *findCmdPath(inform_t *inform, char *pathstring, char *command)
 {
     int current_pos = 0;
     char *path = NULL;
+  int i;
 
     if (!pathstring)
         return NULL;
@@ -96,7 +99,7 @@ char *findCmdPath(inform_t *inform, char *pathstring, char *command)
             return command;
     }
 
-    for (int i = 0; pathstring[i]; i++)
+    for (i = 0; pathstring[i]; i++)
     {
         int j = i;
         while (pathstring[j] && pathstring[j] != ':')
