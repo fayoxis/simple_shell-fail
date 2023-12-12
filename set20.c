@@ -19,7 +19,7 @@ int shellLoop(inform_t *inform, char **args)
         initialize_shell_inform(inform);
 
         if (interactiveMode)
-            _putchar();
+            _putchar('\n');
 
         _puts();
         inputResult = get_input(inform);
@@ -54,7 +54,7 @@ int shellLoop(inform_t *inform, char **args)
     free_shell_info(inform, 1);
 
     if (!interactiveMode && inform->status)
-        exit_shell(inform->status);
+       exit_shell(inform);
 
     if (exitCode != 0)
         exit_shell(exitCode);
@@ -138,7 +138,7 @@ void searchAndExecuteCommand(inform_t *inform)
     }
 
     /* Find the command in the PATH */
-    commandPath = findCmdPath(inform, getenv(inform, "PATH="), inform->arguments[0]);
+    commandPath = findCmdPath(inform, getenv("PATH"), inform->arguments[0]);
     if (commandPath)
     {
         inform->path = commandPath;
@@ -147,7 +147,7 @@ void searchAndExecuteCommand(inform_t *inform)
     else
     {
         /* Check if the command can be executed directly */
-        if ((checkInteractiveMode(inform) || getenv(inform, "PATH=")
+            if ((checkInteractiveMode(inform) || getenv("PATH")
         || inform->arguments[0][0] == '/') && is_cmd(inform, inform->arguments[0]))
         {
             executeCommand(inform);
