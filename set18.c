@@ -163,6 +163,7 @@ int replacevariables(inform_t *inform)
 int replace_string(char **oldString, char *newString)
 {
     free(*oldString); /* Free the memory occupied by the old string. */
-    *oldString = newString; /* Assign the new string to the address of the old string. */.
+    *oldString = newString; /* Assign the new string to the address of the old string. */
+    
     return 1; /* Return 1 to indicate successful replacement.*/
 }
