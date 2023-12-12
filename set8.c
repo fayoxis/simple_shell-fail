@@ -1,7 +1,5 @@
 #include "shell.h"
-void the_check_chain(inform_t *inform, char *buffer, size_t *j,
-size_t bufferIndex, size_t bufferLength);
-int is_chain_char(inform_t *inform, char *buffer, size_t *j);
+
 /**
  * buffer_input - buffers chained commands
  * @inform: parameter struct
