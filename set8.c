@@ -150,7 +150,7 @@ int get_the_Line(inform_t *inform, char **ptr, size_t *length)
 
         newlinePtr = _strchr(buffer + currentIndex, '\n');
         endIndex = newlinePtr ? 1 + (unsigned int)(newlinePtr - buffer) : bufferSize;
-        newInputPtr = realloc(inputPtr, totalBytesRead, totalBytesRead ? totalBytesRead + endIndex : endIndex + 1);
+        newInputPtr = my_realloc(inputPtr, totalBytesRead, totalBytesRead ? totalBytesRead + endIndex : endIndex + 1);
         if (!newInputPtr) /* MALLOC FAILURE! */
             return inputPtr ? (free(inputPtr), -1) : -1;
 
