@@ -2,7 +2,7 @@
 
 int main(void)
 {
-    inform_t inform;
+    inform_t inform = INFO_INIT;
     ssize_t input_size;
     pid_t pid;
      int status;
