@@ -22,7 +22,7 @@ ssize_t buffer_input(inform_t *inform, char **buffer, size_t *length)
 #if USE_GETLINE
         bytesRead = getline(buffer, &bufferLength, stdin);
 #else
-        bytesRead = getline(inform, buffer, &bufferLength);
+        bytesRead = getline(&(*buffer), &bufferLength, stdin);
 #endif
         if (bytesRead > 0)
         {
@@ -38,7 +38,7 @@ ssize_t buffer_input(inform_t *inform, char **buffer, size_t *length)
             if (_strchr(*buffer, ';'))
             {
                 *length = bytesRead;
-                inform->commandBuffer = buffer;
+                inform->commandBuffer = *buffer;
             }
         }
     }
