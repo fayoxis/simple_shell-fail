@@ -2,7 +2,27 @@
 
 int main(void)
 {
-    inform_t inform = INFO_INIT;
+    inform_t inform = {
+    .argument = NULL,
+    .arguments = NULL,
+    .path = NULL,
+    .argumentCount = 0,
+    .line_count = 0,
+    .file_des = 0,
+    .error_num = 0,
+    .linecount_flag = 0,
+    .file_name = NULL,
+    .env = NULL,
+    .history = NULL,
+    .alias = NULL,
+    .environment = NULL,
+    .env_changed = 0,
+    .status = 0,
+    .commandBuffer = NULL,
+    .cmd_buffer_type = 0,
+    .readfd = 0,
+    .historyCount = 0
+};
     ssize_t input_size;
     pid_t pid;
      int status;
