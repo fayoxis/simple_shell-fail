@@ -10,6 +10,8 @@ char **strttok(char *str, char *delimiter)
 {
     int wordCount = 0;
     char **resultArr;
+    char *temp, *start;
+    int i, k, j;
 
     if (str == NULL || str[0] == '\0')
         return NULL;
@@ -17,8 +19,8 @@ char **strttok(char *str, char *delimiter)
     if (!delimiter)
         delimiter = " ";
 
-    // Calculate the number of words
-    char *temp = str;
+    /* Calculate the number of words*/
+    temp = str;
     while (*temp)
     {
         if (!checkDelimiter(*temp, delimiter) && (checkDelimiter(*(temp + 1), delimiter) || !*(temp + 1)))
@@ -33,15 +35,15 @@ char **strttok(char *str, char *delimiter)
     if (!resultArr)
         return NULL;
 
-    // Split the string into words
-    int i = 0;
+    /* Split the string into words*/
+    i = 0;
     while (*str)
     {
         while (checkDelimiter(*str, delimiter))
             str++;
 
-        int k = 0;
-        char *start = str;
+        k = 0;
+        start = str;
         while (!checkDelimiter(*str, delimiter) && *str)
         {
             str++;
@@ -51,7 +53,7 @@ char **strttok(char *str, char *delimiter)
         resultArr[i] = malloc((k + 1) * sizeof(char));
         if (!resultArr[i])
         {
-            for (int j = 0; j < i; j++)
+            for (j = 0; j < i; j++)
                 free(resultArr[j]);
             free(resultArr);
             return NULL;
