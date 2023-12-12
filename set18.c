@@ -16,18 +16,18 @@ int is_chain_char(inform_t *inform, char *buffer, size_t *adr)
         if (buffer[i] == '|' && buffer[i + 1] == '|') {
             buffer[i] = 0;
             i++;
-            inform->cmd_buf_type = CMD_OR;
+            inform->cmd_buffer_type = CMD_OR;
             *adr = i;
             return 1;
         } else if (buffer[i] == '&' && buffer[i + 1] == '&') {
             buffer[i] = 0;
             i++;
-            inform->cmd_buf_type = CMD_AND;
+            inform->cmd_buffer_type = CMD_AND;
             *adr = i;
             return 1;
         } else if (buffer[i] == ';') { /* found end of this command */
             buffer[i] = 0; /* replace semicolon with null */
-            inform->cmd_buf_type = CMD_CHAIN;
+            inform->cmd_buffer_type = CMD_CHAIN;
             *adr = i;
             return 1;
         }
@@ -53,7 +53,7 @@ void the_check_chain(inform_t *inform, char *buffer, size_t *adr, size_t index, 
     size_t i = *adr;
 
     while (buffer[i] != '\0') {
-        if (inform->cmd_buf_type == CMD_AND) {
+        if (inform->cmd_buffer_type == CMD_AND) {
             if (inform->status) {
                 buffer[index] = 0;
                 i = length;
@@ -62,7 +62,7 @@ void the_check_chain(inform_t *inform, char *buffer, size_t *adr, size_t index, 
             }
         }
 
-        if (inform->cmd_buf_type == CMD_OR) {
+        if (inform->cmd_buffer_type == CMD_OR) {
             if (!inform->status) {
                 buffer[index] = 0;
                 i = length;
