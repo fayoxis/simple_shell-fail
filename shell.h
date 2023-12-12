@@ -89,7 +89,7 @@ typedef struct passinginform
     int env_changed;
     int status;
 
-    char **commandBuffer; 
+    char *commandBuffer; 
     int cmd_buffer_type;
     int readfd;
     int historyCount;
