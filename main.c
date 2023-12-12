@@ -1,7 +1,7 @@
 #include "shell.h"
 
 int main(void) {
-    inform_t inform = historyCount; /** Initialize the structure with default values */
+    inform_t inform; /** Initialize the structure with default values */
     ssize_t line_size;
     char *line_buf = NULL;
     size_t line_buf_size = 0;
