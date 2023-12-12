@@ -10,7 +10,9 @@
  */
 char *my_memset(char *mem, char val, unsigned int size)
 {
-    for (unsigned int i = 0; i < size; i++) {
+    unsigned int i;
+    
+    for (i = 0; i < size; i++) {
         *(mem + i) = val;
     }
     return mem;
