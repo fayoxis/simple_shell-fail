@@ -27,6 +27,7 @@ char **convert_list_to_strings(list_t *head)
 {
     size_t count = get_list_length(head);
     char **str_array = NULL;
+    size_t i, j;
 
     if (head == NULL || count == 0)
         return NULL;
@@ -35,13 +36,13 @@ char **convert_list_to_strings(list_t *head)
     if (str_array == NULL)
         return NULL;
 
-    size_t i = 0;
+    i = 0;
     for (; head != NULL; head = head->next, i++)
     {
         str_array[i] = malloc(_strlen(head->str) + 1);
         if (str_array[i] == NULL)
         {
-            for (size_t j = 0; j < i; j++)
+            for (j = 0; j < i; j++)
                 free(str_array[j]);
             free(str_array);
             return NULL;
