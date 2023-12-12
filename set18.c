@@ -76,3 +76,93 @@ void the_check_chain(inform_t *inform, char *buffer, size_t *adr, size_t index, 
 
     *adr = i;
 }
+
+/**
+ * replacealias - Replaces an alias in the tokenized string.
+ * @inform: The parameter struct.
+ *
+ * Return: 1 if the alias is replaced, 0 otherwise.
+ */
+int replacealias(inform_t *inform)
+{
+    list_t *node;
+    char *ps;
+    int replaced = 0;
+
+    node = find_node_starts_with(inform->alias, inform->arguments[0], '=');
+    if (node)
+    {
+        free(inform->arguments[0]);
+        ps = _strchr(node->str, '=');
+        if (ps)
+        {
+            ps = _strdup(ps + 1);
+            if (ps)
+            {
+                inform->arguments[0] = ps;
+                replaced = 1;
+            }
+        }
+    }
+
+    return replaced;
+}
+
+/**
+ * replacevariables - Replaces variables in the tokenized string.
+ * @inform: The parameter struct.
+ *
+ * Return: 1 if variables are replaced, 0 otherwise.
+ */
+int replacevariables(inform_t *inform)
+{
+    list_t *node;
+    int index, replaced = 0;
+
+    for (index = 0; inform->arguments[index]; index++)
+    {
+        if (inform->arguments[index][0] == '$' && inform->arguments[index][1])
+        {
+            if (!_strcmp(inform->arguments[index], "$?"))
+            {
+                replace_string(&(inform->arguments[index]), _strdup(convert_number_to_string(inform->status, 10, 0)));
+                replaced = 1;
+            }
+            else if (!_strcmp(inform->arguments[index], "$$"))
+            {
+                replace_string(&(inform->arguments[index]), _strdup(convert_number_to_string(getpid(), 10, 0)));
+                replaced = 1;
+            }
+            else
+            {
+                node = find_node_starts_with(inform->env, &inform->arguments[index][1], '=');
+                if (node)
+                {
+                    replace_string(&(inform->arguments[index]), _strdup(_strchr(node->str, '=') + 1));
+                    replaced = 1;
+                }
+                else
+                {
+                    replace_string(&inform->arguments[index], _strdup(""));
+                    replaced = 1;
+                }
+            }
+        }
+    }
+
+    return replaced;
+}
+/**
+ * replace_string - Replaces a string with a new string.
+ * @oldString: Pointer to the address of the old string.
+ * @newString: Pointer to the new string.
+ *
+ * Returns: 1 if the replacement is successful, 0 otherwise.
+ */
+
+int replace_string(char **oldString, char *newString)
+{
+    free(*oldString); /* Free the memory occupied by the old string. */
+    *oldString = newString; /* Assign the new string to the address of the old string. */.
+    return 1; /* Return 1 to indicate successful replacement.*/
+}
