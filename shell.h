@@ -183,6 +183,6 @@ char *duplicateChars(const char *pathstring, int start, int stop);
 char *findCmdPath(inform_t *inform, char *pathstring, char *command);
 char *my_memset(char *mem, char val, unsigned int size);
 void free_s(char **str_arr);
-void *my_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
+void *my_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 
 #endif
