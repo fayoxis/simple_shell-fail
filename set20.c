@@ -81,7 +81,7 @@ int findBuiltinCommand(inform_t *inform)
         {"history", display_history},
         {"setenv", _getenv},
         {"unsetenv", setEnvironment},
-        {"cd", executchange_DirectoryeCd},
+        {"cd", change_Directory},
         {"alias", setAlias},
         {NULL, NULL}
     };
