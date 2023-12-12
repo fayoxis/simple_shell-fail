@@ -8,7 +8,7 @@
  * @size: the number of bytes to be filled
  * Return: a pointer to the memory area mem
  */
-void *memset(char *mem, char val, unsigned int size)
+char *memset(char *mem, char val, unsigned int size)
 {
     for (unsigned int i = 0; i < size; i++) {
         *(mem + i) = val;
