@@ -18,11 +18,11 @@ ssize_t buffer_input(inform_t *inform, char **buffer, size_t *length)
         /*bfree((void **)inform->cmd_buf);*/
         free(*buffer);
         *buffer = NULL;
-        signal(SIGINT, signal_Handler);
+        signal(SIGINT, sigintHandler);
 #if USE_GETLINE
-        bytesRead = getline(buffer, &bufferLength, &stdin);
+        bytesRead = getline(buffer, &bufferLength, stdin);
 #else
-        bytesRead = getline(buffer, &bufferLength, inform->input_file);
+        bytesRead = _getline(inform, buffer, &bufferLength);
 #endif
         if (bytesRead > 0)
         {
@@ -32,8 +32,8 @@ ssize_t buffer_input(inform_t *inform, char **buffer, size_t *length)
                 bytesRead--;
             }
             inform->linecount_flag = 1;
-            remove_comments_from_string(*buffer);
-            buildHistoryList(inform, *buffer, inform->historyCount++);
+            remove_comments(*buffer);
+            build_history_list(inform, *buffer, inform->historyCount++);
             /* Check if this is a command chain */
             if (_strchr(*buffer, ';'))
             {
@@ -44,7 +44,6 @@ ssize_t buffer_input(inform_t *inform, char **buffer, size_t *length)
     }
     return bytesRead;
 }
-
 /**
  * get_input - gets a line without the newline character
  * @inform: parameter struct
