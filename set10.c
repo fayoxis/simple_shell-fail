@@ -24,18 +24,31 @@ void set_shell_inform(inform_t *inform, char **arguments)
     inform->file_name = arguments[0];
     if (inform->argument)
     {
-        inform->arguments = strtok(inform->argument, " \t");
-        if (!inform->arguments)
+        char *token = strtok(inform->argument, " \t");
+        if (!token)
         {
-            inform->arguments = malloc(sizeof(char *) * 2);
+            inform->arguments = malloc(sizeof(char *));
             if (inform->arguments)
             {
                 inform->arguments[0] = strdup(inform->argument);
                 inform->arguments[1] = NULL;
             }
         }
-        for (i = 0; inform->arguments && inform->arguments[i]; i++)
-            ;
+        else
+        {
+            inform->arguments = malloc(sizeof(char *));
+            while (token)
+            {
+                inform->arguments = realloc(inform->arguments, sizeof(char *) * (i + 2));
+                if (inform->arguments)
+                {
+                    inform->arguments[i] = strdup(token);
+                    i++;
+                    token = strtok(NULL, " \t");
+                }
+            }
+            inform->arguments[i] = NULL;
+        }
         inform->argumentCount = i;
 
         replacealias(inform);
