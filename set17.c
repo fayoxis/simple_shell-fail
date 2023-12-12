@@ -24,10 +24,12 @@ char *my_memset(char *mem, char val, unsigned int size)
  */
 void free_s(char **str_arr)
 {
+    char **temp;
+    
     if (str_arr == NULL) {
         return;
     }
-    char **temp = str_arr;
+    temp = str_arr;
     while (*str_arr != NULL) {
         free(*str_arr);
         str_arr++;
