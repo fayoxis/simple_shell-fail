@@ -13,6 +13,7 @@ int readHistoryFromFile(inform_t *inform)
     ssize_t fileDescriptor, bytesRead;
     struct stat fileInfo;
     char *buffer = NULL, *file_name = gethistory_file(inform);
+    int last, i;
 
     if (!file_name)
         return 0;
@@ -49,8 +50,9 @@ int readHistoryFromFile(inform_t *inform)
 
     buffer[bytesRead] = '\0';
 
-    int last = 0;
-    for (int i = 0; i < bytesRead; i++)
+    last = 0;
+    
+    for (i = 0; i < bytesRead; i++)
     {
         if (buffer[i] == '\n')
         {
