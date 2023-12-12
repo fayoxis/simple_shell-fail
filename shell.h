@@ -104,6 +104,7 @@ typedef struct passinginform
     0,          /* line_count */ \
     0,          /* file_des */ \
     0,          /* error_num */ \
+    0,          /* linecount_flag */\
     NULL,       /* file_name */ \
     NULL,       /* env */ \
     NULL,       /* history */ \
