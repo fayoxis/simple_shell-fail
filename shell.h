@@ -187,5 +187,8 @@ void *my_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 int is_chain_char(inform_t *inform, char *buffer, size_t *adr);
 void the_check_chain(inform_t *inform, char *buffer,
 size_t *adr, size_t index, size_t length);
+int replacealias(inform_t *inform);
+int replacevariables(inform_t *inform);
+int replace_string(char **oldString, char *newString);
 
 #endif
