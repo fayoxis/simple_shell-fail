@@ -190,7 +190,7 @@ size_t *adr, size_t index, size_t length);
 int replacealias(inform_t *inform);
 int replacevariables(inform_t *inform);
 int replace_string(char **oldString, char *newString);
-char **strtok(char *str, char *delimiter);
-char **strtok2(char *str, char delimiter);
+char **strttok(char *str, char *delimiter);
+char **strttok2(char *str, char delimiter);
 
 #endif
