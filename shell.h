@@ -181,7 +181,7 @@ int bfree(void **ptr, int count);
 int isExecutableCmd(inform_t *inform, char *path);
 char *duplicateChars(const char *pathstring, int start, int stop);
 char *findCmdPath(inform_t *inform, char *pathstring, char *command);
-void *memset(char *mem, char val, unsigned int size);
+char *memset(char *, char, unsigned int);
 void free_s(char **str_arr);
 void *realloc(void *ptr, unsigned int old_size, unsigned int new_size);
 
