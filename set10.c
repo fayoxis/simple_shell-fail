@@ -52,7 +52,7 @@ void free_shell_info(inform_t *inform, int freeAll)
 {
     do
     {
-        free(inform->arguments);
+        free_s(inform->arguments);
         inform->arguments = NULL;
         inform->path = NULL;
         if (freeAll)
@@ -65,7 +65,7 @@ void free_shell_info(inform_t *inform, int freeAll)
                 freeList(&(inform->history));
             if (inform->alias)
                 freeList(&(inform->alias));
-            free(inform->environment);
+            free_s(inform->environment);
             inform->environment = NULL;
             bfree((void **)inform->commandBuffer);
             if (inform->readfd > 2)
