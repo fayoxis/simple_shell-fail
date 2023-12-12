@@ -3,8 +3,6 @@
 int main(void)
 {
     inform_t inform = INFO_INIT;
-    char *buffer = NULL;
-    size_t length = 0;
     ssize_t input_size;
     pid_t pid;
      int status;
