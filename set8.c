@@ -20,9 +20,9 @@ ssize_t buffer_input(inform_t *inform, char **buffer, size_t *length)
         *buffer = NULL;
         signal(SIGINT, signal_Handler);
 #if USE_GETLINE
-        bytesRead = getline(&(*buffer), &bufferLength, stdin);
+        bytesRead = getline(buffer, &bufferLength, stdin);
 #else
-        bytesRead = getline(inform, buffer, &bufferLength);
+        bytesRead = getline(buffer, &bufferLength, stdin);
 #endif
         if (bytesRead > 0)
         {
