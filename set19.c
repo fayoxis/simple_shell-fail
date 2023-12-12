@@ -6,7 +6,7 @@
  * @delimiter: the delimiter string
  * Return: a pointer to an array of strings, or NULL on failure
  */
-char **strtok(char *str, char *delimiter)
+char **strttok(char *str, char *delimiter)
 {
     int wordCount = 0;
     char **resultArr;
@@ -72,7 +72,7 @@ char **strtok(char *str, char *delimiter)
  * @delimiter: the delimiter
  * Return: a pointer to an array of strings, or NULL on failure
  */
-char **strtok2(char *str, char delimiter)
+char **strttok2(char *str, char delimiter)
 {
     int wordCount = 0;
     char **resultArr;
