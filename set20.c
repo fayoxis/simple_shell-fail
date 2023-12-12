@@ -191,7 +191,7 @@ void executeCommand(inform_t *inform)
                 exit_shell(126);
             exit_shell(1);
         }
-        // Error occurred while executing the command
+        /* Error occurred while executing the command*/
         perror("Error: Failed to execute command");
         exit_shell(1);
     }
