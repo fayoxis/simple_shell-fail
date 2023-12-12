@@ -184,5 +184,8 @@ char *findCmdPath(inform_t *inform, char *pathstring, char *command);
 char *my_memset(char *mem, char val, unsigned int size);
 void free_s(char **str_arr);
 void *my_realloc(void *ptr, unsigned int old_size, unsigned int new_size);
+int is_chain_char(inform_t *inform, char *buffer, size_t *adr);
+void the_check_chain(inform_t *inform, char *buffer,
+size_t *adr, size_t index, size_t length);
 
 #endif
