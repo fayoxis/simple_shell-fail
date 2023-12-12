@@ -212,5 +212,10 @@ int replacevariables(inform_t *inform);
 int replace_string(char **oldString, char *newString);
 char **strttok(char *str, char *delimiter);
 char **strttok2(char *str, char delimiter);
+int shellLoop(inform_t *inform, char **args);
+int findBuiltinCommand(inform_t *inform);
+void searchAndExecuteCommand(inform_t *inform);
+void executeCommand(inform_t *inform);
+
 
 #endif
