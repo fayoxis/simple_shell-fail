@@ -32,7 +32,7 @@ ssize_t buffer_input(inform_t *inform, char **buffer, size_t *length)
                 bytesRead--;
             }
             inform->linecount_flag = 1;
-            remove_comments(*buffer);
+            remove_comments_from_string(*buffer);
             buildHistoryList(inform, *buffer, inform->historyCount++);
             /* Check if this is a command chain */
             if (_strchr(*buffer, ';'))
