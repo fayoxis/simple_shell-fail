@@ -90,7 +90,7 @@ char *findCmdPath(inform_t *inform, char *pathstring, char *command)
     if (!pathstring)
         return NULL;
 
-    if (stringLength(command) > 2 && startsWith(command, "./"))
+    if (_strlen(command) > 2 && it_starts_with(command, "./"))
     {
         if (isExecutableCmd(inform, command))
             return command;
@@ -105,11 +105,11 @@ char *findCmdPath(inform_t *inform, char *pathstring, char *command)
         path = duplicateChars(pathstring, current_pos, j);
 
         if (!*path)
-            concatenate(path, command);
+            _strcat(path, command);
         else
         {
-            concatenate(path, "/");
-            concatenate(path, command);
+            _strcat(path, "/");
+            _strcat(path, command);
         }
 
         if (isExecutableCmd(inform, path))
