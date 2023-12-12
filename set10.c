@@ -63,29 +63,29 @@ void set_shell_inform(inform_t *inform, char **arguments)
  */
 void free_shell_info(inform_t *inform, int freeAll)
 {
-    do
-    {
-        free_s(inform->arguments);
-        inform->arguments = NULL;
-        inform->path = NULL;
-        if (freeAll)
-        {
-            if (!inform->commandBuffer)
-                free(inform->argument);
-            if (inform->environment)
-                freeList((char ***) inform->environment);
-            if (inform->history)
-                freeList((char ***) inform->history);
-            if (inform->alias)
-                freeList((char ***) inform->alias);
-            free_s(inform->environment);
-            inform->environment = NULL;
-            bfree((void **)inform->commandBuffer);
-            if (inform->readfd > 2)
-                close(inform->readfd);
-            _putchar(BUF_FLUSH);
-        }
-    } while (0);
+do
+{
+free_s(inform->arguments);
+inform->arguments = NULL;
+inform->path = NULL;
+if (freeAll)
+{
+if (!inform->commandBuffer)
+free(inform->argument);
+if (inform->environment)
+freeList(&(inform->environment));
+if (inform->history)
+freeList(&(inform->history));
+if (inform->alias)
+freeList(&(inform->alias));
+free_s(inform->environment);
+inform->environment = NULL;
+bfree((void **)inform->commandBuffer);
+if (inform->readfd > 2)
+close(inform->readfd);
+_putchar(BUF_FLUSH);
+}
+} while (0);
 }
 /**
  * gethistory_file - gets the history file
