@@ -67,7 +67,7 @@ void free_shell_info(inform_t *inform, int freeAll)
                 freeList(&(inform->alias));
             free(inform->environment);
             inform->environment = NULL;
-            free((void **)inform->commandBuffer);
+            bfree((void **)inform->commandBuffer);
             if (inform->readfd > 2)
                 close(inform->readfd);
             _putchar(BUF_FLUSH);
