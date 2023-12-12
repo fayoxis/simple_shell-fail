@@ -1,5 +1,7 @@
 #include "shell.h"
-
+void the_check_chain(inform_t *inform, char *buffer, size_t *j,
+size_t bufferIndex, size_t bufferLength);
+int is_chain_char(inform_t *inform, char *buffer, size_t *j);
 /**
  * buffer_input - buffers chained commands
  * @inform: parameter struct
@@ -56,12 +58,12 @@ ssize_t get_input(inform_t *inform)
     static size_t bufferIndex, j, bufferLength;
     ssize_t bytesRead = 0;
     char **argBuffer = &(inform->argument), *p;
-the_check_chain(inform, buffer, &j, bufferIndex, bufferLength);
+
     _putchar(BUF_FLUSH);
- bytesRead = buffer_input(inform, &buffer, &bufferLength);
+
     while (1)
     {
-        
+         bytesRead = buffer_input(inform, &buffer, &bufferLength);
        
         if (bytesRead == -1) /* EOF */
             return -1;
@@ -71,7 +73,7 @@ the_check_chain(inform, buffer, &j, bufferIndex, bufferLength);
             j = bufferIndex; /* Initialize a new iterator to the current buffer position */
             p = buffer + bufferIndex; /* Get a pointer for return */
 
-            
+            the_check_chain(inform, buffer, &j, bufferIndex, bufferLength);
             while (j < bufferLength) /* Iterate to find a semicolon or the end */
             {
                 if (is_chain_char(inform, buffer, &j))
