@@ -45,7 +45,7 @@ int max_append_len = n;
     for (i = 0; i < max_append_len; i++)
         str[str_len + i] = src[i];
 
-    // Add the null-terminating character
+    /* Add the null-terminating character*/
     str[str_len + i] = '\0';
 
     return str;
