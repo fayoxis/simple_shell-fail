@@ -51,12 +51,12 @@ int _putchar(char ch)
     static int i;
     static char buf[WRITE_BUF_SIZE];
 
-    if (ch == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+    if (ch == BUFFER_FLUSH || i >= WRITE_BUF_SIZE)
     {
         write(1, buf, i);
         i = 0;
     }
-    if (ch != BUF_FLUSH)
+    if (ch != BUFFER_FLUSH)
         buf[i++] = ch;
     return (1);
 }
