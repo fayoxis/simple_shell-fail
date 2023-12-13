@@ -1,6 +1,6 @@
 
 #include "shell.h"
-#include <stdlib.h>
+
 /**
  * my_memset - fills memory with a constant byte
  * @mem: pointer to the memory area
@@ -43,6 +43,8 @@ void free_s(char **str_arr)
  *
  * Return: pointer to the old block.
  */
+
+
 void *my_realloc(void *ptr, unsigned int old_size, unsigned int new_size) {
     if (new_size == 0) {
         free(ptr);
@@ -52,7 +54,9 @@ void *my_realloc(void *ptr, unsigned int old_size, unsigned int new_size) {
         return ptr;
     }
 
-    char *new_ptr = malloc(new_size);
+    char *new_ptr;
+    new_ptr = malloc(new_size); 
+
     if (new_ptr == NULL) {
         return NULL;
     }
