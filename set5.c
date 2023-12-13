@@ -26,7 +26,7 @@ int _eputchar(char ch)
     static int i;
     static char buff[WRITE_BUF_SIZE];
 
-    if (ch == BUFFER_FLUSH || i >= WRITE_BUF_SIZE)
+    if (ch == BUF_FLUSH || i >= WRITE_BUF_SIZE)
     {
         write(2, buff, i);
         i = 0;
