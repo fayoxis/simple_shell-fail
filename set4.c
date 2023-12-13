@@ -9,7 +9,7 @@ char* environment[] = {
 };
 */
 extern char **environ;
-char* environment[] {
+char* environment[] = {
     int envCount = 0;
    char** environment;
    int i;
