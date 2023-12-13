@@ -80,7 +80,7 @@ if (inform->alias)
 freeList(&(inform->alias));
 free_s(inform->environment);
 inform->environment = NULL;
-bfree((void **)inform->arguments, inform->argumentCount);
+bfree((void **)inform->arguments);
 if (inform->readfd > 2)
 close(inform->readfd);
 _putchar(BUF_FLUSH);
