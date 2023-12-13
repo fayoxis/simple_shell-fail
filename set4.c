@@ -13,7 +13,7 @@ int printEnvironment(inform_t *inform)
     return 0;
 }
 
-char *_getenv(const inform_t *inform, const char *name)
+char *_getenv(inform_t *inform, const char *name)
 {
     const list_t *node = inform->env;
     char *value = NULL;
