@@ -1,6 +1,6 @@
 #include "shell.h"
 
-int printEnvironment(const inform_t *inform)
+int printEnvironment(inform_t *inform)
 {
     const list_t *node = inform->env;
 
@@ -49,13 +49,15 @@ int setEnvironment(inform_t *inform)
 
 int removeEnvironmentVariable(inform_t *inform)
 {
+    int i;
+    
     if (inform->argumentCount <= 1)
     {
         _eputs("Error: Too few arguments\n");
         return 1;
     }
 
-    for (int i = 1; i < inform->argumentCount; i++)
+    for (i = 1; i < inform->argumentCount; i++)
         _unsetenv(inform, inform->arguments[i]);
 
     return 0;
