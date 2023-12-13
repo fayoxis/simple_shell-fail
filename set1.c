@@ -2,12 +2,12 @@
 
 /**
  * checkInteractiveMode - returns true if the shell is in interactive mode
- * @infoPtr: pointer to info struct
+ * @inform: pointer to info struct
  * Return: 1 if in interactive mode, 0 otherwise
  */
-int checkInteractiveMode(inform_t *infoPtr)
+int checkInteractiveMode(inform_t *inform)
 {
-    return (isatty(STDIN_FILENO) && infoPtr->readfd <= 2);
+    return (isatty(STDIN_FILENO) && inform->readfd <= 2);
 }
 
 /**
