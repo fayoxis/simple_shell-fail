@@ -16,9 +16,8 @@ int bfree(void **ptr, int count)
   {
     if (ptr[i] != NULL)
     {
-      free(ptr[i]); /* Free the memory pointed to by ptr[i] */
-      ptr[i] = NULL; /* Set ptr[i] to NULL */
-      freed_count++; /* Increment the counter*/
+      if (bfree(&ptr[i]))
+        freed_count++; /* Increment the counter if freeing was successful */
     }
   }
 
