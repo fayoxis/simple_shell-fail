@@ -56,23 +56,23 @@ int print_decimal_number(int n, int file_des)
 
 /**
  * convert_number_to_string - converter function, a clone of itoa
- * @n: number
+ * @number: number
  * @b: base
  * @flags: argument flags
  *
  * Return: string
  */
-char *convert_number_to_string(long int n, int b, int flags)
+char *convert_number_to_string(long int number, int b, int flags)
 {
     static char *char_array;
     static char buffer[50];
     char sign = 0;
     char *ptr;
-    unsigned long num = n;
+    unsigned long num = number;
 
-    if (!(flags & CONVERT_UNSIGNED) && n < 0)
+    if (!(flags & CONVERT_UNSIGNED) && number < 0)
     {
-        num = -n;
+        num = -number;
         sign = '-';
     }
     char_array = flags & CONVERT_LOWERCASE ? "0123456789abcdef" : "0123456789ABCDEF";
