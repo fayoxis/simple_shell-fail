@@ -128,10 +128,10 @@ int populateEnvironmentList(inform_t *inform)
         i++;
     }
 
-    /* Set the inform's env variable*
+    Set the inform's env variable*
     inform->env = node;
 
-    /* Check if the command is "env" and print environment variables
+    Check if the command is "env" and print environment variables
     if (strcmp(inform->arguments[0], "env") == 0)
     {
         list_t *env_node = inform->env;
