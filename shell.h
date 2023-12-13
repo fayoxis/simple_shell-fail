@@ -83,7 +83,7 @@ typedef struct passinginform
     list_t *env;
     list_t *history;
     list_t *alias;
-    char **environment;
+    char *environment;
     int env_changed;
     int status;
 
