@@ -27,7 +27,7 @@ int bfree(void **ptr)
  *
  * Return: 1 if true, 0 otherwise
  */
-/*int isExecutableCmd(inform_t *inform, char *path)
+int isExecutableCmd(inform_t *inform, char *path)
 {
     struct stat st;
 
@@ -40,29 +40,9 @@ int bfree(void **ptr)
         return 1;
     }
     return 0;
-}*/
-
-#include <sys/stat.h>
-#include <unistd.h>
-
-int isExecutableCmd(inform_t *inform, const char *path)
-{
-    struct stat st;
-
-    if (!path || stat(path, &st) != 0)
-    {
-        printf("check if it is a file"\n);
-        return 0;
-    }
-
-    if (S_ISREG(st.st_mode) && (st.st_mode & S_IXUSR))
-    {
-        // Check if it's a regular file and has execute permission for the user
-        return 1;
-    }
-
-    return 0;
 }
+
+
 
 
 /**
