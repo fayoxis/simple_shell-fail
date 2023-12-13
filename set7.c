@@ -31,18 +31,25 @@ char *_strncat(char *str, const char *src, int n)
 {
     int str_len = 0;
     int i;
-
+int max_append_len = n;
+    int src_len = 0;
     while (str[str_len] != '\0')
         str_len++;
 
-    for (i = 0; i < n && src[i] != '\0'; i++)
+    
+    while (src[src_len] != '\0')
+        src_len++;
+    if (src_len < n)
+        max_append_len = src_len;
+
+    for (i = 0; i < max_append_len; i++)
         str[str_len + i] = src[i];
 
+    // Add the null-terminating character
     str[str_len + i] = '\0';
 
     return str;
 }
-
 /**
  * _strchr - it  locates a character in a string
  * @str: this is  string to be parsed
