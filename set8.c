@@ -1,5 +1,7 @@
 #include "shell.h"
 
+
+void signal_Handler(__attribute__((unused))int signalNum);
 /**
  * buffer_input - buffers chained commands
  * @inform: parameter struct
