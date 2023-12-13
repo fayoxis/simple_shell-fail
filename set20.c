@@ -61,10 +61,10 @@ int findBuiltinCommand(inform_t *inform)
         {"env", printEnvironment},
         {"help", custom_help},
         {"history", display_history},
-        {"setenv", getenv},
+        {"setenv", (int (*)(inform_t *))getenv},
         {"unsetenv", setEnvironment},
         {"cd", change_Directory},
-        {"alias", setAlias},
+        {"alias", (int (*)(inform_t *))setAlias},
         {NULL, NULL}
     };
 
@@ -157,6 +157,7 @@ void executeCommand(inform_t *inform)
 {
     pid_t childPid;
     int status;
+    
 
     childPid = fork();
     if (childPid == -1)
@@ -167,12 +168,12 @@ void executeCommand(inform_t *inform)
 
     if (childPid == 0)
     {
-        if (execve(inform->path, inform->argv, print_error_message(inform)) == -1)
+        if (execve(inform->path, inform->arguments, print_error_message(inform)) == -1)
         {
             free_shell_info(inform, 1);
             if (errno == EACCES)
-                exit_shell(126);
-            exit_shell(1);
+                exit_shell(&status);
+            exit_shell(&status);
         }
         /* Error occurred while executing the command*/
         perror("Error: Failed to execute command");
