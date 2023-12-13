@@ -32,11 +32,11 @@ int shellLoop(inform_t *inform, char **avg) {
     free_shell_info(inform, 1);
 
     if (!checkInteractiveMode(inform) && inform->status)
-        exit_shell(inform->status);
+        exit(inform->status);
     if (builtinReturn == -2) {
         if (inform->error_num == -1)
-            exit_shell(inform->status);
-        exit_shell(inform->error_num);
+            exit(inform->status);
+        exit(inform->error_num);
     }
 
     return builtinReturn;
@@ -57,7 +57,7 @@ int findBuiltinCommand(inform_t *inform)
 {
     int i = 0, builtinRet = -1;
     builtin_table builtinTable[] = {
-        {"exit_shell", exit_shell},
+        {"exit", exit_shell},
         {"env", printEnvironment},
         {"help", custom_help},
         {"history", display_history},
@@ -172,12 +172,12 @@ void executeCommand(inform_t *inform)
         {
             free_shell_info(inform, 1);
             if (errno == EACCES)
-                exit_shell(int 126);
-            exit_shell(int 1);
+            exit( 126);
+            exit( 1);
         }
         /* Error occurred while executing the command*/
         perror("Error: Failed to execute command");
-        exit_shell(1);
+        exit(1);
     }
     else
     {
