@@ -129,8 +129,8 @@ typedef struct builtin
 } builtin_table;
 
 
-int checkInteractiveMode(inform_t *infoPtr);
-int checkDelimiter(char ch, char *delimStr);
+int checkInteractiveMode(inform_t *);
+int checkDelimiter(char ch, char *);
 int isAlphabetic(int ch);
 int convertStringToInteger(char *str);
 int exit_shell(inform_t *inform);
