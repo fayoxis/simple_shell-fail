@@ -61,10 +61,10 @@ int findBuiltinCommand(inform_t *inform)
         {"env", printEnvironment},
         {"help", custom_help},
         {"history", display_history},
-        {"setenv", (int (*)(inform_t *))getenv},
-        {"unsetenv", setEnvironment},
+        {"setenv", setEnvironment},
+        {"unsetenv", removeEnvironmentVariable},
         {"cd", change_Directory},
-        {"alias", (int (*)(inform_t *))setAlias},
+        {"alias", myAlias},
         {NULL, NULL}
     };
 
