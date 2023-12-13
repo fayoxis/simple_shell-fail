@@ -8,47 +8,6 @@ char* environment[] = {
     NULL
 };
 */
-extern char **environ;
-char** initializeEnvironment()
-{
-    int envCount = 0;
-   char** environment;
-   int i;
-    while (environ[envCount] != NULL) {
-        envCount++;
-    }
-
-    /* Allocate memory for the environment array*/
-    environment = malloc((envCount + 1) * sizeof(char*));
-    if (environment == NULL) {
-        /* Handle memory allocation failure*/
-        perror("Failed to allocate memory for environment");
-        exit(EXIT_FAILURE);
-    }
-
-    /* Copy the environment variables to the dynamically allocated array*/
-    for (i = 0; i < envCount; i++) {
-        environment[i] = strdup(environ[i]);
-        if (environment[i] == NULL) {
-            perror("Failed to allocate memory for environment variable");
-            exit(EXIT_FAILURE);
-        }
-    }
-
-    /* Set the last element of the array to NULL to indicate the end*/
-    environment[envCount] = NULL;
-
-    return environment;
-}
-
-char** environment = initializeEnvironment();
-
-void freeEnvironment(char** environment) {
-    for (int i = 0; environment[i] != NULL; i++) {
-        free(environment[i]);
-    }
-    free(environment);
-}
 
 /**
  * printEnvironment - Prints the current environment.
@@ -144,7 +103,7 @@ int removeEnvironmentVariable(inform_t *inform)
  * Return: Always 0
  */
 
-int populateEnvironmentList(inform_t *inform)
+/*int populateEnvironmentList(inform_t *inform)
 {
     list_t *node = NULL;
     size_t i = 0;
@@ -156,4 +115,34 @@ int populateEnvironmentList(inform_t *inform)
     }
     inform->env = node;
     return (0);
+}*/
+
+int populateEnvironmentList(inform_t *inform)
+{
+    list_t *node = NULL;
+    size_t i = 0;
+
+    while (environment[i])
+    {
+        add_newnode(&node, environment[i], 0);
+        i++;
+    }
+
+    /* Set the inform's env variable*/
+    inform->env = node;
+
+    /* Check if the command is "env" and print environment variables*/
+    if (strcmp(inform->arguments[0], "env") == 0)
+    {
+        list_t *env_node = inform->env;
+        while (env_node != NULL)
+        {
+            printf("%s\n", env_node->str);
+            env_node = env_node->next;
+        }
+        return 1;
+    }
+
+    return 0;
 }
+
