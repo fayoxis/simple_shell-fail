@@ -1,4 +1,4 @@
-#include "shell.h"
+/*  #include "shell.h"
 
 int main(void)
 {
@@ -9,7 +9,7 @@ int main(void)
     char **command_args;
 
     /* Initialize shell environment and read history*/
-    initialize_shell_inform(&inform);
+   /* initialize_shell_inform(&inform);
     readHistoryFromFile(&inform);
 
     /* Main shell loop*/
@@ -72,15 +72,16 @@ else /* Parent process*/
     inform.status = WIFEXITED(status) ? WEXITSTATUS(status) : 1;
 }
             free(inform.commandBuffer);
-            inform.commandBuffer = NULL;
+         //   inform.commandBuffer = NULL;
         }
     }
 
     /* Write history to file before exiting*/
-    write_the_history(&inform);
+   // write_the_history(&inform);
 
     /*Free allocated memory*/
-    free_shell_info(&inform, 1);
+   // free_shell_info(&inform, 1);
 
     return 0;
 }
+*/
