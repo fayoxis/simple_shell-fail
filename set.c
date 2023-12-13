@@ -80,7 +80,7 @@ int change_Directory(inform_t *inform)
         }
 
         if (chdir_ret == -1) {
-            print_error(inform, "Failed to change directory to ");
+            print_error_message(inform, "Failed to change directory to ");
             _eputs(inform->arguments[1]);
             _eputchar('\n');
         }
