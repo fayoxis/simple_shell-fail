@@ -3,64 +3,47 @@
 /**
  * shellLoop - Main shell loop
  * @inform: Pointer to the parameter and return inform struct
- * @args: Argument vector from main()
+ * @avg: Argument vector from main()
  *
  * Return: 0 on success, 1 on error, or error code
  */
-int shellLoop(inform_t *inform, char **args)
+
+int shellLoop(inform_t *inform, char **avg)
 {
-    ssize_t inputResult;
-    int builtinResult = 0;
-    int exitCode = 0;
-    int interactiveMode = checkInteractiveMode(inform);
+    ssize_t readStatus;
+    int builtinReturn;
 
-    while (1)
-    {
+    do {
         initialize_shell_inform(inform);
-
-        if (interactiveMode)
+        if (checkInteractiveMode(inform))
+            _puts("$ ");
+        _eputchar(BUF_FLUSH);
+        readStatus = get_input(inform);
+        if (readStatus != -1) {
+            set_shell_inform(inform, avg);
+            builtinReturn = findBuiltinCommand(inform);
+            if (builtinReturn == -1)
+                searchAndExecuteCommand(inform);
+        } else if (checkInteractiveMode(inform))
             _putchar('\n');
-
-        _puts();
-        inputResult = get_input(inform);
-
-        if (inputResult == -1)
-        {
-            if (interactiveMode)
-                printNewLine();
-            free_shell_info(inform, 0);
-            break;
-        }
-
-        set_shell_inform(inform, args);
-        builtinResult = findBuiltinCommand(inform);
-
-        if (builtinResult == -1)
-            searchAndExecuteCommand(inform);
-
         free_shell_info(inform, 0);
-
-        if (builtinResult == -2)
-        {
-            if (inform->errorNumber == -1)
-                exitCode = inform->status;
-            else
-                exitCode = inform->errorNumber;
-            break;
-        }
-    }
+    } while (readStatus != -1 && builtinReturn != -2);
 
     buildHistoryList(inform);
     free_shell_info(inform, 1);
 
-    if (!interactiveMode && inform->status)
-       exit_shell(inform);
+    if (!checkInteractiveMode(inform) && inform->status)
+        exit_shell(inform->status);
+    if (builtinReturn == -2) {
+        if (inform->error_num == -1)
+            exit_shell(inform->status);
+        exit_shell(inform->error_num);
+    }
 
-    if (exitCode != 0)
-        exit_shell(exitCode);
-
-    return builtinResult;
+    return builtinReturn;
 }
+
+
 
 /**
  * findBuiltinCommand - searches for a builtin command in a table.
@@ -79,7 +62,7 @@ int findBuiltinCommand(inform_t *inform)
         {"env", printEnvironment},
         {"help", custom_help},
         {"history", display_history},
-        {"setenv", _getenv},
+        {"setenv", getenv},
         {"unsetenv", setEnvironment},
         {"cd", change_Directory},
         {"alias", setAlias},
@@ -99,6 +82,7 @@ int findBuiltinCommand(inform_t *inform)
 
     return builtinRet;
 }
+
 /**
  * searchAndExecuteCommand - searches for a command in the PATH environment variable
  * @inform: pointer to the parameter and return information structure
@@ -148,7 +132,7 @@ void searchAndExecuteCommand(inform_t *inform)
     {
         /* Check if the command can be executed directly */
             if ((checkInteractiveMode(inform) || getenv("PATH")
-        || inform->arguments[0][0] == '/') && is_cmd(inform, inform->arguments[0]))
+        || inform->arguments[0][0] == '/') && isExecutableCmd(inform, inform->arguments[0]))
         {
             executeCommand(inform);
         }
