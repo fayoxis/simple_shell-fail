@@ -172,8 +172,8 @@ void executeCommand(inform_t *inform)
         {
             free_shell_info(inform, 1);
             if (errno == EACCES)
-                exit_shell(&status);
-            exit_shell(&status);
+                exit_shell(int 126);
+            exit_shell(int 1);
         }
         /* Error occurred while executing the command*/
         perror("Error: Failed to execute command");
