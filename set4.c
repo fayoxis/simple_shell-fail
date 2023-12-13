@@ -103,7 +103,7 @@ int removeEnvironmentVariable(inform_t *inform)
  * Return: Always 0
  */
 
-/*int populateEnvironmentList(inform_t *inform)
+int populateEnvironmentList(inform_t *inform)
 {
     list_t *node = NULL;
     size_t i = 0;
@@ -115,9 +115,9 @@ int removeEnvironmentVariable(inform_t *inform)
     }
     inform->env = node;
     return (0);
-}*/
+}
 
-int populateEnvironmentList(inform_t *inform)
+/*int populateEnvironmentList(inform_t *inform)
 {
     list_t *node = NULL;
     size_t i = 0;
@@ -128,10 +128,10 @@ int populateEnvironmentList(inform_t *inform)
         i++;
     }
 
-    /* Set the inform's env variable*/
+    /* Set the inform's env variable*
     inform->env = node;
 
-    /* Check if the command is "env" and print environment variables*/
+    /* Check if the command is "env" and print environment variables
     if (strcmp(inform->arguments[0], "env") == 0)
     {
         list_t *env_node = inform->env;
@@ -144,5 +144,5 @@ int populateEnvironmentList(inform_t *inform)
     }
 
     return 0;
-}
+}*/
 
