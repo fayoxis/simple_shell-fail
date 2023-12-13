@@ -5,8 +5,8 @@ int main(int arg_c, char **arg_v)
     inform_t inform[] = {INFO_INIT};
     int fil_d = 2;
 
-    asm("mov %1, %0\n\t"
-        "add $3, %0"
+    asm ("mov %1, %0\n\t"
+		"add $3, %0"
         : "=r"(fil_d)
         : "r"(fil_d));
 
