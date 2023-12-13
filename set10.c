@@ -13,7 +13,7 @@ void initialize_shell_inform(inform_t *inform)
 }
 
 /**
- * set_shell_inform - Initializes the info_t struct.
+ * set_shell_inform - Initializes the inform_t struct.
  * @inform: Pointer to the struct.
  * @arguments: Argument vector.
  */
@@ -21,36 +21,26 @@ void set_shell_inform(inform_t *inform, char **arguments)
 {
     int i = 0;
 
-    inform->file_name = arguments[0];
-    if (inform->argument)
+    inform->fname = arguments[0];
+    if (inform->arg)
     {
-        char *token = strtok(inform->argument, " \t");
-        if (!token)
+        inform->argv = strttok(inform->arg, " \t");
+        if (!inform->argv)
         {
-            inform->arguments = malloc(sizeof(char *));
-            if (inform->arguments)
+            inform->argv = malloc(sizeof(char *) * 2);
+            if (inform->argv)
             {
-                inform->arguments[0] = strdup(inform->argument);
-                inform->arguments[1] = NULL;
+                inform->argv[0] = _strdup(inform->arg);
+                inform->argv[1] = NULL;
             }
         }
-        else
+        
+        i = 0;
+        while (inform->argv && inform->argv[i])
         {
-            inform->arguments = malloc(sizeof(char *));
-            while (token)
-            {
-                inform->arguments = realloc(inform->arguments, sizeof(char *) * (i + 2));
-                if (inform->arguments)
-                {
-                    inform->arguments[i] = strdup(token);
-                    i++;
-                    token = strtok(NULL, " \t");
-                }
-            }
-            inform->arguments[i] = NULL;
+            i++;
         }
-        inform->argumentCount = i;
-
+        inform->argc = i;
         replacealias(inform);
         replacevariables(inform);
     }
