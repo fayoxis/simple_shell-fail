@@ -137,7 +137,7 @@ int write_the_history(inform_t *inform)
         node = node->next;
     }
 
-    _putfd(BUF_FLUSH, fd);
+    _putfd(BUFFER_FLUSH, fd);
     close(fd);
     return (1);
 }
