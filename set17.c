@@ -46,6 +46,8 @@ void free_s(char **str_arr)
 
 
 void *my_realloc(void *ptr, unsigned int old_size, unsigned int new_size) {
+    unsigned int min_size = old_size < new_size ? old_size : new_size;
+     char *new_ptr;
     if (new_size == 0) {
         free(ptr);
         return NULL;
@@ -54,14 +56,14 @@ void *my_realloc(void *ptr, unsigned int old_size, unsigned int new_size) {
         return ptr;
     }
 
-    char *new_ptr;
+   
     new_ptr = malloc(new_size); 
 
     if (new_ptr == NULL) {
         return NULL;
     }
 
-    unsigned int min_size = old_size < new_size ? old_size : new_size;
+
     unsigned int i;
     for (i = 0; i < min_size; i++) {
         new_ptr[i] = ((char *)ptr)[i];
