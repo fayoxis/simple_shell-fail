@@ -89,9 +89,11 @@ int removeEnvironmentVariable(inform_t *inform)
 /**
  * populateEnvironmentList - Populates the environment linked list
  * @inform: Structure containing relevant information. Used to maintain
- *          consistent function prototype.
+ * @environment  Custom modified copy of `environ` from linked list `env`.
+ * consistent function prototype.
  * Return: Always 0
  */
+
 int populateEnvironmentList(inform_t *inform)
 {
     list_t *node = NULL;
