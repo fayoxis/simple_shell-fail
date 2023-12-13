@@ -8,15 +8,16 @@ char* environment[] = {
     NULL
 };
 */
-
+extern char **environ;
 char** initializeEnvironment() {
     int envCount = 0;
+   char** environment;
     while (environ[envCount] != NULL) {
         envCount++;
     }
 
     /* Allocate memory for the environment array*/
-    char** environment = malloc((envCount + 1) * sizeof(char*));
+    environment[] = malloc((envCount + 1) * sizeof(char*));
     if (environment == NULL) {
         /* Handle memory allocation failure*/
         perror("Failed to allocate memory for environment");
@@ -38,7 +39,7 @@ char** initializeEnvironment() {
     return environment;
 }
 
-char** environment[] = initializeEnvironment();
+char** environment = initializeEnvironment();
 
 /**
  * printEnvironment - Prints the current environment.
