@@ -83,7 +83,7 @@ inform->environment = NULL;
 bfree((void **)inform->arguments, inform->argumentCount);
 if (inform->readfd > 2)
 close(inform->readfd);
-_putchar(BUF_FLUSH);
+_putchar(BUFFER_FLUSH);
 }
 } while (0);
 }
