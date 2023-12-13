@@ -16,7 +16,7 @@ int shellLoop(inform_t *inform, char **avg) {
         initialize_shell_inform(inform);
         if (checkInteractiveMode(inform))
             _puts("$ ");
-        _eputchar(BUF_FLUSH);
+        _eputchar(BUFFER_FLUSH);
         readStatus = get_input(inform);
         if (readStatus != -1) {
             set_shell_inform(inform, avg);
