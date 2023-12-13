@@ -24,17 +24,15 @@ char *my_memset(char *mem, char val, unsigned int size)
  */
 void free_s(char **str_arr)
 {
-    char **temp;
-    
     if (str_arr == NULL) {
         return;
     }
-    temp = str_arr;
+
+    char **temp = str_arr;
     while (*str_arr != NULL) {
         free(*str_arr);
         str_arr++;
     }
-    free(temp);
 }
 
 /**
@@ -47,13 +45,6 @@ void free_s(char **str_arr)
  */
 void *my_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
 {
-    char *new_ptr;
-    unsigned int i;
-    unsigned int min_size;
-    
-    if (ptr == NULL) {
-        return malloc(new_size);
-    }
     if (new_size == 0) {
         free(ptr);
         return NULL;
@@ -61,15 +52,17 @@ void *my_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
     if (new_size == old_size) {
         return ptr;
     }
-    new_ptr = malloc(new_size);
-    
+
+    char *new_ptr = malloc(new_size);
     if (new_ptr == NULL) {
         return NULL;
     }
-    min_size = old_size < new_size ? old_size : new_size;
-    for (i = 0; i < min_size; i++) {
+
+    unsigned int min_size = old_size < new_size ? old_size : new_size;
+    for (unsigned int i = 0; i < min_size; i++) {
         new_ptr[i] = ((char *)ptr)[i];
     }
+
     free(ptr);
     return new_ptr;
 }
