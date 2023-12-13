@@ -95,7 +95,7 @@ int buildHistoryList(inform_t *inform, char *buffer, int line_count)
         return 0;
 
     node->str = strdup(buffer);
-    node->num = line_count;
+    node->number = line_count;
     node->next = NULL;
 
     if (!inform->history)
@@ -128,7 +128,7 @@ int renumberHistory(inform_t *inform)
 
     while (node)
     {
-        node->num = line_count++;
+        node->number = line_count++;
         node = node->next;
     }
 
