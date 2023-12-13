@@ -83,7 +83,7 @@ char *duplicateChars(const char *pathstring, int start, int stop)
  *
  * Return: full path of command if found or NULL
  */
-char *findCmdPath(inform_t *inform, char *pathstring, char *command)
+/*char *findCmdPath(inform_t *inform, char *pathstring, char *command)
 {
     int current_pos = 0;
     char *path = NULL;
@@ -129,4 +129,70 @@ char *findCmdPath(inform_t *inform, char *pathstring, char *command)
     }
 
     return NULL;
+}*/
+
+char *findCmdPath(inform_t *inform, const char *pathstring, const char *command)
+{
+    const char *delimiter ;
+    const char *path;
+    const char *end;
+    char *fullPath;
+    char *lastPath;
+    
+    if (!pathstring)
+        return NULL;
+
+    /* Check if the command is a direct path*/
+    if (_strlen(command) > 2 && it_starts_with(command, "./") && isExecutableCmd(inform, command))
+        return strdup(command);
+
+    delimiter = ":";
+    path = pathstring;
+
+    while ((end = strchr(path, ':')) != NULL)
+    {
+        fullPath = createFullPath(path, end, command);
+
+        if (fullPath != NULL)
+        {
+            if (isExecutableCmd(inform, fullPath))
+                return fullPath;
+
+            free(fullPath);
+        }
+
+        path = end + 1;
+    }
+
+    /* Check the last path in the string*/
+    lastPath = createFullPath(path, NULL, command);
+    if (lastPath != NULL)
+    {
+        if (isExecutableCmd(inform, lastPath))
+            return lastPath;
+
+        free(lastPath);
+    }
+
+    return NULL;
 }
+
+char *createFullPath(const char *start, const char *end, const char *command)
+{
+    size_t pathLength = (end != NULL) ? (size_t)(end - start) : strlen(start);
+    size_t commandLength = strlen(command);
+
+    char *fullPath = (char *)malloc(pathLength + 1 + commandLength + 1);
+
+    if (fullPath != NULL)
+    {
+        strncpy(fullPath, start, pathLength);
+        fullPath[pathLength] = '\0';
+
+        _strcat(fullPath, "/");
+        _strcat(fullPath, command);
+    }
+
+    return fullPath;
+}
+
