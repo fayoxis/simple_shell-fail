@@ -195,7 +195,7 @@ char *_strcpy(char *dest, char *src);
 char *_strdup(const char *str);
 void _puts(char *str);
 int _putchar(char ch);
-int bfree(void **ptr, int count);
+int bfree(void **ptr);
 int isExecutableCmd(inform_t *inform, char *path);
 char *duplicateChars(const char *pathstring, int start, int stop);
 char *findCmdPath(inform_t *inform, char *pathstring, char *command);
