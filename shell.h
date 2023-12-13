@@ -157,7 +157,7 @@ int print_decimal_number(int n, int file_des);
 char *convert_number_to_string(long int n, int b, int flags);
 void remove_comments_from_string(char *buffer);
 char *_strncpy(char *str, const char *src, int n);
-char *_strncat(char *str, const char *src, int n);
+char *_strncat(char *dest, char *src, int n);
 char *_strchr(const char *str, char ch);
 ssize_t buffer_input(inform_t *inform, char **buffer, size_t *length);
 ssize_t get_input(inform_t *inform);
