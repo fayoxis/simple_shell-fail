@@ -35,7 +35,12 @@
 #define  HISTORY_MAX	4096
 
 extern char* environment[];
-
+char* environment[] = {
+    "env1",
+    "env2",
+    "env3",
+    NULL  
+};
 
 /**
  * struct liststr - this is singly linked list
