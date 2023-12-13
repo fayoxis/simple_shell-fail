@@ -28,12 +28,12 @@ void free_s(char **str_arr)
         return;
     }
 
-    char **temp = str_arr;
     while (*str_arr != NULL) {
         free(*str_arr);
         str_arr++;
     }
 }
+
 
 /**
  * my_realloc - reallocates a block of memory
@@ -59,7 +59,8 @@ void *my_realloc(void *ptr, unsigned int old_size, unsigned int new_size)
     }
 
     unsigned int min_size = old_size < new_size ? old_size : new_size;
-    for (unsigned int i = 0; i < min_size; i++) {
+    unsigned int i;
+    for (i = 0; i < min_size; i++) {
         new_ptr[i] = ((char *)ptr)[i];
     }
 
