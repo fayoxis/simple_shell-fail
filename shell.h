@@ -39,13 +39,13 @@ extern char **environment;
 
 /**
  * struct liststr - this is singly linked list
- * @num: the  number is a field
+ * @number: the  number is a field
  * @str: this is a  string
  * @next: this points to the next node
  */
 typedef struct liststr
 {
-	int num;
+	int number;
 	char *str;
 	struct liststr *next;
 } list_t;
