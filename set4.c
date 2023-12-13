@@ -1,8 +1,5 @@
 #include "shell.h"
 
-char* environment;
-
-
 /**
  * printEnvironment - Prints the current environment.
  * @inform: Structure containing potential arguments. Used to maintain
