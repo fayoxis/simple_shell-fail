@@ -9,7 +9,8 @@ char* environment[] = {
 };
 */
 extern char **environ;
-char* environment[] = {
+char** initializeEnvironment()
+{
     int envCount = 0;
    char** environment;
    int i;
@@ -38,6 +39,15 @@ char* environment[] = {
     environment[envCount] = NULL;
 
     return environment;
+}
+
+char** environment = initializeEnvironment();
+
+void freeEnvironment(char** environment) {
+    for (int i = 0; environment[i] != NULL; i++) {
+        free(environment[i]);
+    }
+    free(environment);
 }
 
 /**
