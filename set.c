@@ -24,7 +24,7 @@ int exit_shell(inform_t *inform)
             if (exit_status == -1)
             {
                 inform->status = 2;
-                print_error(inform, "Illegal number: ");
+                print_error_message(inform, "Illegal number: ");
                 _eputs(inform->arguments[1]);
                 _eputchar('\n');
                 input_valid = 0;  /* Invalid input, repeat the loop */
