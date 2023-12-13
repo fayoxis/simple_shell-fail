@@ -95,19 +95,19 @@ _putchar(BUFFER_FLUSH);
  */
 char *gethistory_file(inform_t *inform)
 {
-    char *buf, *dir;
+    char *buff, *dir;
 
     dir = _getenv(inform, "HOME=");
     if (!dir)
         return (NULL);
-    buf = malloc(sizeof(char) * (_strlen(dir) + _strlen(HIST_FILE) + 2));
-    if (!buf)
+    buff = malloc(sizeof(char) * (_strlen(dir) + _strlen(HIST_FILE) + 2));
+    if (!buff)
         return (NULL);
-    buf[0] = 0;
-    _strcpy(buf, dir);
-    _strcat(buf, "/");
-    _strcat(buf, HIST_FILE);
-    return (buf);
+    buff[0] = 0;
+    _strcpy(buff, dir);
+    _strcat(buff, "/");
+    _strcat(buff, HIST_FILE);
+    return (buff);
 }
 
 /**
