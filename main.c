@@ -2,7 +2,7 @@
 
 int main(int arg_c, char **arg_v)
 {
-    inform_t inform[] = {INFO_INIT};
+    inform_t inform = {INFO_INIT};
     int fil_d = 2;
 
     asm("mov %1, %0\n\t"
@@ -31,7 +31,7 @@ int main(int arg_c, char **arg_v)
         inform->readfd = fil_d;
     }
 
-    populateEnvironmentList(&inform[]);
+    populateEnvironmentList(&inform);
     readHistoryFromFile(inform);
     shellLoop(inform, arg_v);
 
