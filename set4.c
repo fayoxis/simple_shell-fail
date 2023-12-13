@@ -101,7 +101,7 @@ int populateEnvironmentList(inform_t *inform)
 
     while (environment[i])
     {
-        add_newnode(&node, environment[i], NULL);
+        add_newnode(&node, environment[i], 0);
         i++;
     }
     inform->env = node;
