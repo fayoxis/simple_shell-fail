@@ -34,7 +34,7 @@
 #define HIST_FILE	".simple_shell_history"
 #define  HISTORY_MAX	4096
 
-extern char **environment;
+extern char* environment[];
 
 
 /**
