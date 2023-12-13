@@ -9,7 +9,7 @@ char* environment[] = {
 };
 */
 extern char **environ;
-char** initializeEnvironment() {
+char* environment[] {
     int envCount = 0;
    char** environment;
    int i;
@@ -39,8 +39,6 @@ char** initializeEnvironment() {
 
     return environment;
 }
-
-char** environment = initializeEnvironment();
 
 /**
  * printEnvironment - Prints the current environment.
