@@ -83,7 +83,7 @@ inform->environment = NULL;
 bfree((void **)inform->arguments, inform->argumentCount);
 if (inform->readfd > 2)
 close(inform->readfd);
-_putchar(BUFFER_FLUSH);
+_putchar(BUF_FLUSH);
 }
 } while (0);
 }
@@ -137,7 +137,7 @@ int write_the_history(inform_t *inform)
         node = node->next;
     }
 
-    _putfd(BUFFER_FLUSH, fd);
+    _putfd(BUF_FLUSH, fd);
     close(fd);
     return (1);
 }
