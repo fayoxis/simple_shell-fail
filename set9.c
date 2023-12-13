@@ -29,12 +29,13 @@ int _unsetenv(inform_t *inform, char *var)
     list_t *node = inform->env;
     list_t *prev = NULL;
     char *p;
-
+ int original_env_changed = inform->env_changed;
+    int modified_env_changed = 0;
+    
     if (!node || !var)
         return 0;
 
-    int original_env_changed = inform->env_changed;
-    int modified_env_changed = 0;
+   
 
     while (node)
     {
