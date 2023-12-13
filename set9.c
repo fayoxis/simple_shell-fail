@@ -31,27 +31,25 @@ int _unsetenv(inform_t *inform, char *var)
     char *p;
 
     if (!node || !var)
-        return (0);
+        return 0;
+
+    int original_env_changed = inform->env_changed;
+    int modified_env_changed = 0;
 
     while (node)
     {
         p = it_starts_with(node->str, var);
         if (p && *p == '=')
         {
-            if (!prev)
-                inform->env = node->next;
-            else
-                prev->next = node->next;
-            free(node->str);
-            free(node);
-            inform->env_changed = 1;
-            return (1);
+            modified_env_changed = delete_nodeindex(&(inform->env), i);
+            break;
         }
         prev = node;
         node = node->next;
     }
 
-    return (0);
+    inform->env_changed = original_env_changed || modified_env_changed;
+    return inform->env_changed;
 }
 
 /**
