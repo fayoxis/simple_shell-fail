@@ -48,7 +48,7 @@ int _putfd(char ch, int file_des)
     static int i;
     static char buff[WRITE_BUF_SIZE];
 
-    if (ch == BUFFER_FLUSH || i >= WRITE_BUF_SIZE)
+    if (ch == BUF_FLUSH || i >= WRITE_BUF_SIZE)
     {
         write(file_des, buff, i);
         i = 0;
