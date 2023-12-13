@@ -28,7 +28,7 @@ int shellLoop(inform_t *inform, char **avg) {
         free_shell_info(inform, 0);
     } while (readStatus != -1 && builtinReturn != -2);
 
-    buildHistoryList(inform);
+    write_the_history(inform);
     free_shell_info(inform, 1);
 
     if (!checkInteractiveMode(inform) && inform->status)
@@ -168,7 +168,7 @@ void executeCommand(inform_t *inform)
 
     if (childPid == 0)
     {
-        if (execve(inform->path, inform->arguments, print_error_message(inform)) == -1)
+        if (execve(inform->path, inform->arguments, get_environment(inform)) == -1)
         {
             free_shell_info(inform, 1);
             if (errno == EACCES)
