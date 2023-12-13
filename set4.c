@@ -4,7 +4,7 @@
 char* environment[] = {
    "VAR1=value1",
    "VAR2=value2",
-     ... other environment variables
+     /*... other environment variables*/
     NULL
 };
 
