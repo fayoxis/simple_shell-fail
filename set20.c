@@ -8,8 +8,7 @@
  * Return: 0 on success, 1 on error, or error code
  */
 
-int shellLoop(inform_t *inform, char **avg)
-{
+int shellLoop(inform_t *inform, char **avg) {
     ssize_t readStatus;
     int builtinReturn;
 
@@ -25,7 +24,7 @@ int shellLoop(inform_t *inform, char **avg)
             if (builtinReturn == -1)
                 searchAndExecuteCommand(inform);
         } else if (checkInteractiveMode(inform))
-            _putchar('\n');
+            putchar('\n');
         free_shell_info(inform, 0);
     } while (readStatus != -1 && builtinReturn != -2);
 
