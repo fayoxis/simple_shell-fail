@@ -4,11 +4,11 @@
  * add_newnode - adds a node to the start of the list
  * @head: address of pointer to head node
  * @str: str field of node
- * @num: node index used by history
+ * @number: node index used by history
  *
  * Return: size of list
  */
-list_t *add_newnode(list_t **head, const char *str, int num)
+list_t *add_newnode(list_t **head, const char *str, int number)
 {
     list_t *new_head;
 
@@ -18,7 +18,7 @@ list_t *add_newnode(list_t **head, const char *str, int num)
     if (!new_head)
         return NULL;
     my_memset((void *)new_head, 0, sizeof(list_t));
-    new_head->num = num;
+    new_head->number = number;
     if (str)
     {
         new_head->str = strdup(str);
@@ -37,11 +37,11 @@ list_t *add_newnode(list_t **head, const char *str, int num)
  * addnode_tothe_end - adds a node to the end of the list
  * @head: address of pointer to head node
  * @str: str field of node
- * @num: node index used by history
+ * @number: node index used by history
  *
  * Return: size of list
  */
-list_t *addnode_tothe_end(list_t **head, const char *str, int num)
+list_t *addnode_tothe_end(list_t **head, const char *str, int number)
 {
     list_t *new_node, *node;
 
@@ -53,7 +53,7 @@ list_t *addnode_tothe_end(list_t **head, const char *str, int num)
     if (!new_node)
         return NULL;
     my_memset((void *)new_node, 0, sizeof(list_t));
-    new_node->num = num;
+    new_node->number = number;
     if (str)
     {
         new_node->str = strdup(str);
