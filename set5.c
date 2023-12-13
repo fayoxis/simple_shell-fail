@@ -24,15 +24,15 @@ void _eputs(char *str)
 int _eputchar(char ch)
 {
     static int i;
-    static char buf[WRITE_BUF_SIZE];
+    static char buff[WRITE_BUF_SIZE];
 
     if (ch == BUFFER_FLUSH || i >= WRITE_BUF_SIZE)
     {
-        write(2, buf, i);
+        write(2, buff, i);
         i = 0;
     }
     if (ch != BUFFER_FLUSH)
-        buf[i++] = ch;
+        buff[i++] = ch;
     return 1;
 }
 
@@ -46,15 +46,15 @@ int _eputchar(char ch)
 int _putfd(char ch, int file_des)
 {
     static int i;
-    static char buf[WRITE_BUF_SIZE];
+    static char buff[WRITE_BUF_SIZE];
 
     if (ch == BUFFER_FLUSH || i >= WRITE_BUF_SIZE)
     {
-        write(file_des, buf, i);
+        write(file_des, buff, i);
         i = 0;
     }
     if (ch != BUFFER_FLUSH)
-        buf[i++] = ch;
+        buff[i++] = ch;
     return 1;
 }
 
