@@ -1,13 +1,13 @@
 #include "shell.h"
 
-/**
+
 char* environment[] = {
    "VAR1=value1",
    "VAR2=value2",
      ... other environment variables
     NULL
 };
-*/
+
 
 /**
  * printEnvironment - Prints the current environment.
