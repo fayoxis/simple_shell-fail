@@ -12,12 +12,13 @@ extern char **environ;
 char** initializeEnvironment() {
     int envCount = 0;
    char** environment;
+   int i;
     while (environ[envCount] != NULL) {
         envCount++;
     }
 
     /* Allocate memory for the environment array*/
-    environment[] = malloc((envCount + 1) * sizeof(char*));
+    environment = malloc((envCount + 1) * sizeof(char*));
     if (environment == NULL) {
         /* Handle memory allocation failure*/
         perror("Failed to allocate memory for environment");
@@ -25,7 +26,7 @@ char** initializeEnvironment() {
     }
 
     /* Copy the environment variables to the dynamically allocated array*/
-    for (int i = 0; i < envCount; i++) {
+    for (i = 0; i < envCount; i++) {
         environment[i] = strdup(environ[i]);
         if (environment[i] == NULL) {
             perror("Failed to allocate memory for environment variable");
