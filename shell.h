@@ -34,14 +34,7 @@
 #define HIST_FILE	".simple_shell_history"
 #define  HISTORY_MAX	4096
 
-extern char* environment[];
-char* environment[] = {
-    "env1",
-    "env2",
-    "env3",
-    NULL  
-};
-
+extern char* environment;
 /**
  * struct liststr - this is singly linked list
  * @number: the  number is a field
