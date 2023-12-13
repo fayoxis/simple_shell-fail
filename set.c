@@ -1,7 +1,7 @@
 #include "shell.h"
 
 
-void print_error(inform_t *inform, const char *message);  
+
 /**
  * exit_shell - Exits the shell
  * @inform: Structure containing potential arguments. Used to maintain
