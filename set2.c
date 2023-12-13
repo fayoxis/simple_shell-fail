@@ -8,17 +8,19 @@
  */
 int setAlias(inform_t *inform, char *str)
 {
+    {
     char *equalPos;
 
     equalPos = _strchr(str, '=');
     if (!equalPos)
         return 1;
     if (!*++equalPos)
-        return   remove_alias(inform, str);
+        return remove_alias(inform, str);
 
-      remove_alias(inform, str);
+    remove_alias(inform, str);
     return add_newnode(&(inform->alias), str, 0) == NULL;
 }
+  
 
 /**
  * printAlias - it is Printing an alias string.
