@@ -68,7 +68,7 @@ size_t print_linked_list(const list_t *head)
 
     for (; current != NULL; current = current->next)
     {
-        _puts(convert_number_to_string(current->num, 10, 0));
+        _puts(convert_number_to_string(current->number, 10, 0));
         _putchar(':');
         _putchar(' ');
         _puts(current->str ? current->str : "(nil)");
