@@ -1,11 +1,44 @@
 #include "shell.h"
 
+/**
 char* environment[] = {
-    "VAR1=value1",
-    "VAR2=value2",
-    /* ... other environment variables*/
+   "VAR1=value1",
+   "VAR2=value2",
+     ... other environment variables
     NULL
 };
+*/
+
+char** initializeEnvironment() {
+    int envCount = 0;
+    while (environ[envCount] != NULL) {
+        envCount++;
+    }
+
+    /* Allocate memory for the environment array*/
+    char** environment = malloc((envCount + 1) * sizeof(char*));
+    if (environment == NULL) {
+        /* Handle memory allocation failure*/
+        perror("Failed to allocate memory for environment");
+        exit(EXIT_FAILURE);
+    }
+
+    /* Copy the environment variables to the dynamically allocated array*/
+    for (int i = 0; i < envCount; i++) {
+        environment[i] = strdup(environ[i]);
+        if (environment[i] == NULL) {
+            perror("Failed to allocate memory for environment variable");
+            exit(EXIT_FAILURE);
+        }
+    }
+
+    /* Set the last element of the array to NULL to indicate the end*/
+    environment[envCount] = NULL;
+
+    return environment;
+}
+
+char** environment[] = initializeEnvironment();
 
 /**
  * printEnvironment - Prints the current environment.
