@@ -103,14 +103,11 @@ int change_Directory(inform_t *inform)
 int custom_help(inform_t *inform)
 {
     char *argument = inform->argument;
-    int i;
 
-    _puts("The help command is called. This function is not implemented yet.\n");
+    _puts("help call works. Function not yet implemented\n");
 
-    for (i = 0; argument[i] != '\0'; i++)
-    {
-        _puts(&argument[i]);
-    }
+    if (0)
+        _puts(argument); /* temp att_unused workaround */
 
     return 0;
 }
@@ -148,7 +145,7 @@ int remove_alias(inform_t *inform, char *alias)
 		 get_nodeindex(inform->alias, find_node_starts_with(inform->alias, alias, -1)));
 		*p = c;
 		if (ret == 0)
-			break;
+		break;
 	}
 	
 	return ret;
