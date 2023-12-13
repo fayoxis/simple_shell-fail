@@ -57,7 +57,7 @@ ssize_t get_input(inform_t *inform)
     ssize_t bytesRead = 0;
     char **argBuffer = &(inform->argument), *p;
 
-    _putchar(BUFFER_FLUSH);
+    _putchar(BUF_FLUSH);
 
     while (1)
     {
@@ -182,5 +182,5 @@ void signal_Handler(__attribute__((unused))int signalNum)
 {
     _puts("\n");
     _puts("$ ");
-    _putchar(BUFFER_FLUSH);
+    _putchar(BUF_FLUSH);
 }
