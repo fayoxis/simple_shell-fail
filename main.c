@@ -36,7 +36,7 @@ int main(int arg_c, char **arg_v)
             return EXIT_FAILURE;
         }
         inform->readfd = fil_d;
-        break;  // Exit the loop after the first iteration
+        break;  /* Exit the loop after the first iteration */
     }
 
      populateEnvironmentList(inform);
