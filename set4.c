@@ -1,6 +1,5 @@
 #include "shell.h"
 
-char** environment;
 extern char **environ;
 
 /**
