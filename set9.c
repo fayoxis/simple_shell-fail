@@ -27,29 +27,25 @@ char **get_environment(inform_t *inform)
 int _unsetenv(inform_t *inform, char *var)
 {
     list_t *node = inform->env;
-    list_t *prev = NULL;
+    size_t i = 0;
     char *p;
- int original_env_changed = inform->env_changed;
-    int modified_env_changed = 0;
-    
+
     if (!node || !var)
         return 0;
-
-   
 
     while (node)
     {
         p = it_starts_with(node->str, var);
         if (p && *p == '=')
         {
-            modified_env_changed = delete_nodeindex(&(inform->env), i);
-            break;
+            inform->env_changed = delete_nodeindex(&(inform->env), i);
+            i = 0;
+            node = inform->env;
+            continue;
         }
-        prev = node;
         node = node->next;
+        i++;
     }
-
-    inform->env_changed = original_env_changed || modified_env_changed;
     return inform->env_changed;
 }
 
