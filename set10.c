@@ -21,26 +21,26 @@ void set_shell_inform(inform_t *inform, char **arguments)
 {
     int i = 0;
 
-    inform->fname = arguments[0];
-    if (inform->arg)
+    inform->file_name = arguments[0];
+    if (inform->argument)
     {
-        inform->argv = strttok(inform->arg, " \t");
-        if (!inform->argv)
+        inform->arguments = strttok(inform->argument, " \t");
+        if (!inform->arguments)
         {
-            inform->argv = malloc(sizeof(char *) * 2);
-            if (inform->argv)
+            inform->arguments = malloc(sizeof(char *) * 2);
+            if (inform->arguments)
             {
-                inform->argv[0] = _strdup(inform->arg);
-                inform->argv[1] = NULL;
+                inform->arguments[0] = _strdup(inform->argument);
+                inform->arguments[1] = NULL;
             }
         }
         
         i = 0;
-        while (inform->argv && inform->argv[i])
+        while (inform->arguments && inform->arguments[i])
         {
             i++;
         }
-        inform->argc = i;
+        inform->argumentCount = i;
         replacealias(inform);
         replacevariables(inform);
     }
