@@ -214,6 +214,7 @@ int shellLoop(inform_t *inform, char **args);
 int findBuiltinCommand(inform_t *inform);
 void searchAndExecuteCommand(inform_t *inform);
 void executeCommand(inform_t *inform);
+char** initializeEnvironment();
 
 
 #endif
