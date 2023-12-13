@@ -1,6 +1,7 @@
 #include "shell.h"
 
-extern char **environ;
+char* environment;
+
 
 /**
  * printEnvironment - Prints the current environment.
@@ -100,7 +101,6 @@ int populateEnvironmentList(inform_t *inform)
 {
     list_t *node = NULL;
     size_t i = 0;
-    environment = environ;
 
     while (environment[i])
     {
