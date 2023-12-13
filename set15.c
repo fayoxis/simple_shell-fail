@@ -24,8 +24,12 @@ char *_strdup(const char *str)
 {
     size_t length = strlen(str) + 1;
     char *ret = malloc(length);
-    if (ret)
+    if (ret){
         memcpy(ret, str, length);
+    }else{
+        return NULL;
+    }
+    free((void *)str);
     return ret;
 }
 
