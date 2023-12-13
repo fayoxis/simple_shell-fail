@@ -31,7 +31,7 @@ int _eputchar(char ch)
         write(2, buff, i);
         i = 0;
     }
-    if (ch != BUFFER_FLUSH)
+    if (ch != BUF_FLUSH)
         buff[i++] = ch;
     return 1;
 }
@@ -53,7 +53,7 @@ int _putfd(char ch, int file_des)
         write(file_des, buff, i);
         i = 0;
     }
-    if (ch != BUFFER_FLUSH)
+    if (ch != BUF_FLUSH)
         buff[i++] = ch;
     return 1;
 }
