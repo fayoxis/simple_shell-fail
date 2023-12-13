@@ -1,6 +1,6 @@
 
 #include "shell.h"
-
+#include <stdlib.h>
 /**
  * my_memset - fills memory with a constant byte
  * @mem: pointer to the memory area
