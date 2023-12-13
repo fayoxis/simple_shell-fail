@@ -26,12 +26,12 @@ int _eputchar(char ch)
     static int i;
     static char buf[WRITE_BUF_SIZE];
 
-    if (ch == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+    if (ch == BUFFER_FLUSH || i >= WRITE_BUF_SIZE)
     {
         write(2, buf, i);
         i = 0;
     }
-    if (ch != BUF_FLUSH)
+    if (ch != BUFFER_FLUSH)
         buf[i++] = ch;
     return 1;
 }
@@ -48,12 +48,12 @@ int _putfd(char ch, int file_des)
     static int i;
     static char buf[WRITE_BUF_SIZE];
 
-    if (ch == BUF_FLUSH || i >= WRITE_BUF_SIZE)
+    if (ch == BUFFER_FLUSH || i >= WRITE_BUF_SIZE)
     {
         write(file_des, buf, i);
         i = 0;
     }
-    if (ch != BUF_FLUSH)
+    if (ch != BUFFER_FLUSH)
         buf[i++] = ch;
     return 1;
 }
