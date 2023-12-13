@@ -7,21 +7,18 @@
  *
  * Return: number of pointers successfully freed.
  */
-int bfree(void **ptr, int count)
+int bfree(void **ptr)
 {
-  int freed_count = 0;
-  int i;
+    int freed = 0;
 
-  for (i = 0; i < count; i++)
-  {
-    if (ptr[i] != NULL)
+    while (ptr && *ptr)
     {
-      if (bfree(&ptr[i]))
-        freed_count++; /* Increment the counter if freeing was successful */
+        free(*ptr);
+        *ptr = NULL;
+        freed = 1;
     }
-  }
 
-  return freed_count; /* Return the number of pointers successfully freed */
+    return freed;
 }
 /**
  * isExecutableCmd - determines if a file is an executable command
